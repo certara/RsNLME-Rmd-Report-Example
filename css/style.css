@@ -130,17 +130,17 @@ h4  {
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
     color: #fff;
-    background-color: #012C49;
+    background-color: #125887;
 }
 
 .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
     z-index: 2;
     color: #fff;
-    background-color: #012C49;
-    border-color: #012C49;
+    background-color: #125887;
+    border-color: #125887;
 }
 
 a {
-    color: #012C49;
+    color: #125887;
 }
 
