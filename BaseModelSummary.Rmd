@@ -1,5 +1,5 @@
 ---
-title: "Base Model <br /> Data Memo Example"
+title: "Data Memo Example"
 author: "Keith Nieforth & James Craig"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output:
@@ -53,11 +53,8 @@ htmltools::img(src = knitr::image_uri(file.path('img', 'certara.PNG')),
 # Other Info      : Define your own!
 
 library(Certara.RsNLME)
-library(Certara.RsNLME.ModelBuilder)
-library(Certara.RsNLME.ModelExecutor)
 library(Certara.Xpose.NLME)
 library(Certara.ModelResults)
-library(Certara.VPCResults)
 library(tidyvpc)
 library(xpose)
 library(ggplot2)
@@ -69,8 +66,6 @@ library(egg)
 library(tidyr)
 
 pkdata <- read.csv("pkdata.csv")
-
-#read in base model object that has been fit
 
 ```
 
@@ -246,10 +241,13 @@ model <- model %>%
   randomEffect(effect = c("nV", "nCl"), value = c(0.1, 0.1)) %>%
   residualError(predName = "C", SD = 0.2)
 
-## Add covariates to your model, but don't assign to any parameters yet -- use for base diagnostics
+## Add covariates to your model
 
 model <- model %>%
-  addCovariate(covariate = "WT") %>%
+  addCovariate(covariate = "WT", 
+               center = "Value",
+               centerValue=70, 
+               effect = c("V", "Cl")) %>%
   addCovariate(covariate = "AGE") %>%
   addCovariate(covariate = "CRCL") %>%
   addCovariate(covariate = "SEX", type = "Categorical", levels = c(0, 1), 
@@ -405,8 +403,9 @@ vpcPlot
 ::: {.keymessage}
 &nbsp;  For 100 mg q24h * 7 dose regimen, Cmax and AUC24 on day 7:
 
-*  97% target achievement for Cmax
-*  80% target achievement for AUC24; 75% for WT>100 Kg
+*  99+% target achievement for Cmax; 69% for WT > 90 Kg
+*  99+% target achievement for AUC24; 30% for WT > 90 Kg
+*  Consider dose adjustment for > 90 Kg subjects
 :::
 
 ## Plots {.tabset .tabset-fade .tabset-pills}
@@ -463,7 +462,7 @@ pkparms <- SimTableout %>%
   distinct(Replicate, id5, .keep_all = T) %>% 
   select(Replicate, id5, SEX, WT, Cmax, AUC24)
 
-#Make Some Plots
+#Make some plots
 
 targetCmax <- 1    #enter the threshold you'd like to use
 targetAUC24 <- 15    #enter the threshold you'd like to use
@@ -486,28 +485,27 @@ p1<-ggplot(TAplotdat,aes(x = value, fill=Parameter)) +
 p1<-tag_facet(p1, x=Inf,y=Inf,                        
           open = "", 
           close = "",
-          tag_pool=c(paste("%OverTarget = ",overtargetAUC24),   #this uses the % values we created earlier
-                     paste("%OverTarget = ",overtargetCmax)),
+          tag_pool=c(paste("%OverTarget = ",round(overtargetAUC24,0)),   #this uses the % values we created earlier
+                     paste("%OverTarget = ",round(overtargetCmax,0))),
           hjust = 1.1,
           vjust = 1.5) +
   theme(strip.text = element_text(),strip.background = element_rect())
 
 p1
 
-## Facet by WT Categories <50kg, 50-100kg, >100kg
+## Facet by WT Categories <50kg, 50-80kg, >90kg
 TAplotdat <- TAplotdat %>% 
-  mutate(WTcut = cut(WT,breaks=c(0,50,100,Inf)))
+  mutate(WTcut = cut(WT,breaks=c(30,50,90,Inf)))
 
-#calculate attainment by facets
+#calculate AUC24 and Cmax attainment by cuts
 
-TAsummary <- pkparms %>% 
-  group_by(cut(WT,breaks=c(0,50,100,Inf))) %>% 
-  summarize(pctovrCmax = round(length(which(Cmax > targetCmax)) / length(Cmax) * 100,0), 
-            pctovrAUC24 = round(length(which(AUC24 > targetAUC24)) / length(AUC24) * 100,0))
+TAsummary <- TAplotdat %>% 
+  group_by(Parameter,WTcut) %>% 
+  summarize(pctovr = round(length(which(value > target)) / length(value) * 100,0))
 
 #plot
 p2<-ggplot(TAplotdat,aes(x = value, fill=Parameter)) + 
-  labs(x="Parameter", y="Count",title="Histograms for AUC24 and Cmax Target Attainment") +
+  labs(x="Parameter", y="Count",title="Histograms for AUC24 and Cmax Target Attainment by WT Cuts") +
   geom_histogram(col="black") +                 
   geom_vline(aes(xintercept = target), lty=2, lwd=1) + 
   facet_wrap(Parameter ~ WTcut, scales="free") 
@@ -515,19 +513,18 @@ p2<-ggplot(TAplotdat,aes(x = value, fill=Parameter)) +
 #we can use tag_facet from the egg package to add some custom text to the plots  
 
 p2<-tag_facet(p2, x=Inf, y=Inf, open = "", close = "",
-          tag_pool=c(paste("%OverTarget = ",TAsummary$pctovrAUC24[1]),
-                     paste("%OverTarget = ",TAsummary$pctovrAUC24[2]),
-                     paste("%OverTarget = ",TAsummary$pctovrAUC24[3]),
-                     paste("%OverTarget = ",TAsummary$pctovrCmax[1]),
-                     paste("%OverTarget = ",TAsummary$pctovrCmax[2]),
-                     paste("%OverTarget = ",TAsummary$pctovrCmax[3])),
+          tag_pool=c(paste("%OverTarget = ",TAsummary$pctovr[1]),
+                     paste("%OverTarget = ",TAsummary$pctovr[2]),
+                     paste("%OverTarget = ",TAsummary$pctovr[3]),
+                     paste("%OverTarget = ",TAsummary$pctovr[4]),
+                     paste("%OverTarget = ",TAsummary$pctovr[5]),
+                     paste("%OverTarget = ",TAsummary$pctovr[6])),
           hjust = 1.1,
           vjust = 1.5,
           size=3.5) +
 theme(strip.text = element_text(),strip.background = element_rect())
   
 p2
-
 ```
 
 # Session Info {.tabset .tabset-fade .tabset-pills}
