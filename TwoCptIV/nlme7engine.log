@@ -179,7 +179,7 @@ external_coords  Param       Param_val         Std_err     rel_std_err
 
  RUNTIMES
 
-   engine runtime (secs) =      1.281
-   stderr runtime (secs) =      1.297
+   engine runtime (secs) =      0.984
+   stderr runtime (secs) =      0.984
 
  EXITCODE            1

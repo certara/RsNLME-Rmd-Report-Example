@@ -1,10 +1,10 @@
-Unable to open the HKEY_LOCAL_MACHINE\SOFTWARE\MPICH\SMPD\process\23684 registry key, error 5, Access is denied.
+Unable to open the HKEY_LOCAL_MACHINE\SOFTWARE\MPICH\SMPD\process\22316 registry key, error 5, Access is denied.
 
-Unable to open the HKEY_LOCAL_MACHINE\SOFTWARE\MPICH\SMPD\process\27452 registry key, error 5, Access is denied.
+Unable to open the HKEY_LOCAL_MACHINE\SOFTWARE\MPICH\SMPD\process\21236 registry key, error 5, Access is denied.
 
-Unable to open the HKEY_LOCAL_MACHINE\SOFTWARE\MPICH\SMPD\process\2912 registry key, error 5, Access is denied.
+Unable to open the HKEY_LOCAL_MACHINE\SOFTWARE\MPICH\SMPD\process\9724 registry key, error 5, Access is denied.
 
-Unable to open the HKEY_LOCAL_MACHINE\SOFTWARE\MPICH\SMPD\process\26012 registry key, error 5, Access is denied.
+Unable to open the HKEY_LOCAL_MACHINE\SOFTWARE\MPICH\SMPD\process\28780 registry key, error 5, Access is denied.
 
  LAGL process            1  of            4  is alive
 
@@ -295,7 +295,7 @@ Elsobj=  -4054.7130      -LL=  -1016.5241      evals =  144  ITRMCDsum=   25   2
            6  0.36608473378628770     
            7  0.37817022726703708     
  stabilized -LL value =   -1016.5241353452609     
- main engine time in secs=   1.2812500000000000     
+ main engine time in secs=  0.98437500000000000     
   exit code from umdriver =           1
  TOTLAPLACE =    1016.5241353452609     
 Elsobj=  -4054.7130      -LL=  -1016.5241      evals =  145  ITRMCDsum=   25   25
@@ -434,9 +434,9 @@ Elsobj=  -4054.7130      -LL=  -1016.5241      evals =  247  ITRMCDsum=   25   2
           6        0.134018E+00    0.196109E-01    0.167605E-01    0.284233E-01
           7        0.143013E+00    0.238050E-01    0.237897E-01    0.293644E-01
  Elapsed Engine Run Time = 
-         1.281
+         0.984
  std error time=
-         1.297
+         0.984
 
 Elsobj=  -4054.7130      -LL=  -1016.5241      evals =  448  ITRMCDsum=   25    0
 
@@ -469,6 +469,6 @@ Elsobj=  -4054.7130      -LL=  -1016.5241      evals =  448  ITRMCDsum=   25    
 
  RUNTIMES
 
-   engine runtime (secs) =      1.281
-   stderr runtime (secs) =      1.297
+   engine runtime (secs) =      0.984
+   stderr runtime (secs) =      0.984
  Normal exit from engine 5, exit code =           1

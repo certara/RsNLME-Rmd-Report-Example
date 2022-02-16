@@ -4,7 +4,7 @@ author: "Keith Nieforth & James Craig"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output:
   html_document:
-    css: "style.css"
+    css: "css/style.css"
     toc: yes
     toc_depth: 4
     toc_float: yes
@@ -13,17 +13,19 @@ output:
 toctitle: Contents
 ---
 
+***
+
 ```{r certara-logo, echo=FALSE, fig.width=1, fig.height=10}
-htmltools::img(src = knitr::image_uri(file.path('certara.PNG')), 
+htmltools::img(src = knitr::image_uri(file.path('img', 'certara.PNG')), 
                alt = 'logo', 
-               style = 'position:fixed; top:0; right:0; padding:10px; width:300px;')
+               style = 'position:fixed; top:0; right:0; padding:5px; width:300px;')
 ```
 
 # Notes and Conventions {.tabset .tabset-fade .tabset-pills} 
 
 ## Notes
 
-::: {#description}
+::: {#description-overview}
 * This is an example R Markdown report to demonstrate the workflow for building a "data memo" or report object in parallel with the conduct of a RsNLME analysis.
 * We use html output and "tabsets" within the RMarkdown document to show how RsNLME can be used together with R markdown to produce very dense, interactive data summaries that capture a large amount of data in well organized, easily shared delivery mechanism.
 * We also show how RsNLME generates code specific to your analysis problem that allows you to get the job done, even if you're not an R expert!
@@ -31,15 +33,15 @@ htmltools::img(src = knitr::image_uri(file.path('certara.PNG')),
 
 ## Conventions used in this document
 
-::: {#description}
+::: {.description}
 * We've used blue text boxes to indicate descriptive information
 :::
 
-::: {#results}
+::: {.results}
 * We've used yellow text boxes to indicate results
 :::
 
-::: {#keymessage}
+::: {.keymessage}
 *  Green text boxes provide key messages from the analysis results
 *  Example:  This is a key message statement
 :::
@@ -77,14 +79,14 @@ pkdata <- read.csv("pkdata.csv")
 The purpose of this data memo is to provide a summary of the base population pharmacokinetic model fit for study XYZ, and to summarize simulated exposure target attainment as measured by Cmax and AUC24 following the first administered dose of study drug.   
 
 ## Study Design
-::: {#description}
+::: {.description}
 *  100 healthy and infected male and female subjects were enrolled in this study at 3 centers under inpatient and outpatient settings
 *  Subjects were administered 100 mg of Drug XYZ intravenously at time=0 and time=24
 *  Blood samples were obtained at 0, 0.25, 0.5, 1, 2, 4, 6, 8, 12, and 24 hours after the first dose, and 12, and 24 hours after the second dose of Drug XYZ
 *  Covariates in the dataset include baseline subject weight, age, creatinine clearance, gender, status (healthy or infected) and study center (3 sites), and setting (inpatient or clinic).
 :::
 ## Methods
-::: {#description}
+::: {.description}
 *  Data analysis was conducted using the population pharmacokinetic program RsNLME version 1.1.0 (https://certara.github.io/R-RsNLME/index.html) 
 *  A two-compartment model with bolus input and first-order elimination from the central compartment was used to model the time course of drug XYZ plasma concentrations. The parameters of this model were clearance (Cl), volume of distribution of the central compartment (V), volume of distribution of the peripheral compartment (V2), and intercompartmental clearance (Cl2)
 *  The base model was used to simulate individual concentration time profiles for 100 replicates of the study design, and AUC24 and Cmax were derived and summarized relative to target exposure thresholds 
@@ -94,7 +96,7 @@ The purpose of this data memo is to provide a summary of the base population pha
 
 ## Summary
 
-::: {#keymessage}
+::: {.keymessage}
 *  Elimination profile appears to be bi-exponential
 *  Body weight and gender appear to influence PK
 :::
@@ -148,7 +150,7 @@ ggplot(subset(pkdata ,AMT==0), aes(x = TIME, y = DV, group = ID)) +
 
 ## Mean profiles Log {.tabset .tabset-fade .tabset-pills}
 
-::: {#results}
+::: {.results}
 -   bi-exponential disposition
 :::
 
@@ -168,7 +170,7 @@ ggplot(subset(pkdata ,AMT==0), aes(x = TIME, y = DV, group = ID)) +
 
 ## Facet Gender Linear {.tabset .tabset-fade .tabset-pills}
 
-::: {#results}
+::: {.results}
 -   Gender influence on PK with higher DV's in females
 :::
 
@@ -188,7 +190,7 @@ ggplot(subset(pkdata ,AMT==0), aes(x = TIME, y = DV, group = ID)) +
 
 ## Facet WT Linear {.tabset .tabset-fade .tabset-pills}
 
-::: {#results}
+::: {.results}
 -   WT influence on PK with higher DV's in lower weight subjects
 :::
 
@@ -208,7 +210,7 @@ ggplot(subset(pkdata ,AMT==0), aes(x = TIME, y = DV, group = ID)) +
 
 ## Summary
 
-::: {#keymessage}
+::: {.keymessage}
 *  A 2 compartment model with IV bolus input was used to fit the data
 *  Convergence was achieved with successful estimation of parameter standard errors
 *  Model fit diagnostics show acceptable fit
@@ -218,14 +220,14 @@ ggplot(subset(pkdata ,AMT==0), aes(x = TIME, y = DV, group = ID)) +
 
 ## Model Description {.tabset .tabset-fade .tabset-pills}
 
-::: {#results}
+::: {.results}
 *  A 2 compartment model with IV bolus input was used to fit the data
 *  Model parameters central clearance (Cl), central volume (V), inter-compartmental clearance (Cl2), and peripheral compartment volume (V2)
 *  Between subject variability terms on Cl and V 
 *  Proportional residual error model
 :::
 
-![Structural PK Model](2cptiv.png "Two Compartment with Bolus IV Input")
+![Structural PK Model](img/2cptiv.png "Two Compartment with Bolus IV Input")
 
 
 
@@ -354,7 +356,7 @@ table
 
 ## Visual Predictive Check {.tabset .tabset-fade .tabset-pills}
 
-```{r base-vpc}
+```{r base-vpc, fig.retina=2, out.width="140%"}
 vpcmod <- copyModel(model, acceptAllEffects = TRUE, modelName = "vpc")
 
 ## Set up VPC arguments to have PRED outputted to simulation output dataset "predout.csv"
@@ -379,7 +381,7 @@ vpcPlot <- ggplot(vpc$stats, aes(x = x)) +
   geom_ribbon(aes(ymin = lo, ymax = hi, fill = qname, col = qname, group = qname), alpha = 0.1, col = NA) +
   geom_line(aes(y = md, col = qname, group = qname)) +
   geom_line(aes(y = y, linetype = qname), size = 1) +
-  geom_point(data = vpc$obs[!(blq | alq)], aes(x = x, y = y), color = "#757D8F", size = 2L, shape = 16, alpha = 0.8, show.legend = FALSE) +
+  geom_point(data = vpc$obs[!(blq | alq)], aes(x = x, y = y), color = "#757D8F", size = 1.5, shape = 16, alpha = 0.8, show.legend = FALSE) +
   scale_colour_manual(name = "Simulated Percentiles\nMedian (lines) 95% CI (areas)", breaks = c("q0.05", "q0.5", "q0.95"), values = c("#D63636", "#3648D6", "#D63636"), labels = c("5%", "50%", "95%")) +
   scale_fill_manual(name = "Simulated Percentiles\nMedian (lines) 95% CI (areas)", breaks = c("q0.05", "q0.5", "q0.95"), values = c("#D63636", "#3648D6", "#D63636"), labels = c("5%", "50%", "95%")) +
   scale_linetype_manual(name = "Observed Percentiles", breaks = c("q0.05", "q0.5", "q0.95"), values = c("dashed", "solid", "dashed"), labels = c("5%", "50%", "95%")) +
@@ -387,7 +389,10 @@ vpcPlot <- ggplot(vpc$stats, aes(x = x)) +
   ylab(sprintf("Observed/Simulated percentiles and associated %s%% CI", 100 * vpc$conf.level)) +
   xlab("\nTIME") +
   theme_certara() +
-  theme(legend.position = "top")
+  theme(legend.position = "top", 
+       legend.title=element_text(size=8), 
+       legend.text=element_text(size=6),
+       legend.key.width = unit(0.4, 'cm'))
 
 vpcPlot
 
@@ -397,8 +402,8 @@ vpcPlot
 
 ## Summary
 
-::: {#keymessage}
-For 100 mg q24h * 7 dose regimen, Cmax and AUC24 on day 7:
+::: {.keymessage}
+&nbsp;  For 100 mg q24h * 7 dose regimen, Cmax and AUC24 on day 7:
 
 *  97% target achievement for Cmax
 *  80% target achievement for AUC24; 75% for WT>100 Kg
