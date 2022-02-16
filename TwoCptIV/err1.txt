@@ -1,0 +1,474 @@
+Unable to open the HKEY_LOCAL_MACHINE\SOFTWARE\MPICH\SMPD\process\23684 registry key, error 5, Access is denied.
+
+Unable to open the HKEY_LOCAL_MACHINE\SOFTWARE\MPICH\SMPD\process\27452 registry key, error 5, Access is denied.
+
+Unable to open the HKEY_LOCAL_MACHINE\SOFTWARE\MPICH\SMPD\process\2912 registry key, error 5, Access is denied.
+
+Unable to open the HKEY_LOCAL_MACHINE\SOFTWARE\MPICH\SMPD\process\26012 registry key, error 5, Access is denied.
+
+ LAGL process            1  of            4  is alive
+
+ READFLAGS
+ environmental flags and variables
+           0  iflagnp 
+           0  iflagrestart
+           1  norderAGQ
+           1  iflagfocehess
+           1  iflagverbose
+           1  Allow Gaussian Fit
+           1  METHODblup
+          13  NDIGITblup
+           1  METHODlagl
+           7  NDIGITlagl
+           1  iflagIEXP
+   2.0000000949949026E-003  tolmodlinz
+           0  nrep_pcwres
+         500  Nsample
+         200  Nburn
+           0  iflaganagrad
+           0  iodelevelused
+
+ Initial thetas and bounds
+    i      Thetalo(i)      Thetainit(i)    Thetahi(i)
+    1     -0.1000+101      0.8000E+02      0.1000+101
+    2     -0.1000+101      0.6000E+01      0.1000+101
+    3     -0.1000+101      0.1000E+03      0.1000+101
+    4     -0.1000+101      0.9000E+01      0.1000+101
+    5      0.1000E-02      0.2000E+00      0.1000+101
+ sigmaLchol=  0.20000000000000001     
+
+ initial packed param vector and typx vector
+         i        packed(i)        typx(i)
+         1       80.000000       80.000000
+         2        6.000000        6.000000
+         3      100.000000      100.000000
+         4        9.000000        9.000000
+         5        0.200000        0.200000
+         6        0.316228        0.316228
+         7        0.316228        0.316228
+
+ Initial fcntheta1 value   439.97182370487093     
+
+ Nsub from initxtheta=         100
+ Nobstotal =         1100
+
+ corresponding ELSobj with zeroed blups=  -1141.7211256405380     
+
+Elsobj=  -3720.4909      -LL=  -849.41307      evals =    1  ITRMCDsum=   25  195
+Elsobj=  -3720.4909      -LL=  -849.41307      evals =    2  ITRMCDsum=   25   25
+ LL value after initial stabilization =   -849.41306789865394     
+ computing forward difference gradient
+Elsobj=  -3720.5643      -LL=  -849.44978      evals =    3  ITRMCDsum=   25   67
+Elsobj=  -3720.3920      -LL=  -849.36363      evals =    4  ITRMCDsum=   25   58
+Elsobj=  -3720.4320      -LL=  -849.38362      evals =    5  ITRMCDsum=   25   54
+Elsobj=  -3720.4386      -LL=  -849.38690      evals =    6  ITRMCDsum=   25   52
+Elsobj=  -3720.1956      -LL=  -849.26541      evals =    7  ITRMCDsum=   25   53
+Elsobj=  -3720.5166      -LL=  -849.42594      evals =    8  ITRMCDsum=   25   44
+Elsobj=  -3720.5233      -LL=  -849.42924      evals =    9  ITRMCDsum=   25   41
+ max element scaled gradient and tol =  0.54971403787987672        2.0000000000000001E-004
+ numprocs, LoopCounter =           4           1
+ itotaliter,itncnt,stepmax=           1           1  0.50000000000000000     
+ new lineq search starts at fc =   -849.41306789865394     
+Elsobj=  -4037.5901      -LL=  -1007.9627      evals =   10  ITRMCDsum=   25  172
+ fc, fp on linesearch exit  -849.41306789865394       -1007.9626627899563     
+ computing forward difference gradient
+Elsobj=  -4037.5957      -LL=  -1007.9655      evals =   11  ITRMCDsum=   25   69
+Elsobj=  -4037.5827      -LL=  -1007.9590      evals =   12  ITRMCDsum=   25   72
+Elsobj=  -4037.5821      -LL=  -1007.9587      evals =   13  ITRMCDsum=   25   64
+Elsobj=  -4037.5012      -LL=  -1007.9182      evals =   14  ITRMCDsum=   25   50
+Elsobj=  -4037.5871      -LL=  -1007.9612      evals =   15  ITRMCDsum=   25   49
+Elsobj=  -4037.6054      -LL=  -1007.9703      evals =   16  ITRMCDsum=   25   41
+Elsobj=  -4037.6027      -LL=  -1007.9690      evals =   17  ITRMCDsum=   25   42
+ max element scaled gradient and tol =  0.13950274412562763        2.0000000000000001E-004
+ iconsecmax=           1 stepmax=  0.50000000000000000     
+ itotaliter,itncnt,stepmax=           2           2  0.75000000000000000     
+ new lineq search starts at fc =   -1007.9626627899563     
+Elsobj=  -4031.3004      -LL=  -1004.8178      evals =   18  ITRMCDsum=   25  120
+Elsobj=  -4049.8639      -LL=  -1014.0996      evals =   19  ITRMCDsum=   25  100
+ fc, fp on linesearch exit  -1007.9626627899563       -1014.0995816657176     
+ computing forward difference gradient
+Elsobj=  -4049.8713      -LL=  -1014.1033      evals =   20  ITRMCDsum=   25   63
+Elsobj=  -4049.8656      -LL=  -1014.1004      evals =   21  ITRMCDsum=   25   58
+Elsobj=  -4049.8707      -LL=  -1014.1029      evals =   22  ITRMCDsum=   25   52
+Elsobj=  -4049.8583      -LL=  -1014.0968      evals =   23  ITRMCDsum=   25   51
+Elsobj=  -4049.8698      -LL=  -1014.1025      evals =   24  ITRMCDsum=   25   48
+Elsobj=  -4049.8769      -LL=  -1014.1061      evals =   25  ITRMCDsum=   25   39
+Elsobj=  -4049.8741      -LL=  -1014.1046      evals =   26  ITRMCDsum=   25   42
+ max element scaled gradient and tol =   2.0196159025328300E-002   2.0000000000000001E-004
+ itotaliter,itncnt,stepmax=           3           3  0.75000000000000000     
+ new lineq search starts at fc =   -1014.0995816657176     
+Elsobj=  -4051.4825      -LL=  -1014.9089      evals =   27  ITRMCDsum=   25   82
+ fc, fp on linesearch exit  -1014.0995816657176       -1014.9088611030230     
+ computing forward difference gradient
+Elsobj=  -4051.4848      -LL=  -1014.9100      evals =   28  ITRMCDsum=   25   67
+Elsobj=  -4051.4796      -LL=  -1014.9074      evals =   29  ITRMCDsum=   25   59
+Elsobj=  -4051.4869      -LL=  -1014.9111      evals =   30  ITRMCDsum=   25   52
+Elsobj=  -4051.4876      -LL=  -1014.9114      evals =   31  ITRMCDsum=   25   51
+Elsobj=  -4051.4810      -LL=  -1014.9081      evals =   32  ITRMCDsum=   25   48
+Elsobj=  -4051.4924      -LL=  -1014.9138      evals =   33  ITRMCDsum=   25   41
+Elsobj=  -4051.4911      -LL=  -1014.9132      evals =   34  ITRMCDsum=   25   42
+ max element scaled gradient and tol =   1.5486031197368442E-002   2.0000000000000001E-004
+ itotaliter,itncnt,stepmax=           4           4  0.75000000000000000     
+ new lineq search starts at fc =   -1014.9088611030230     
+Elsobj=  -4053.5472      -LL=  -1015.9412      evals =   35  ITRMCDsum=   25  100
+ fc, fp on linesearch exit  -1014.9088611030230       -1015.9412227125943     
+ computing forward difference gradient
+Elsobj=  -4053.5421      -LL=  -1015.9387      evals =   36  ITRMCDsum=   25   67
+Elsobj=  -4053.5449      -LL=  -1015.9401      evals =   37  ITRMCDsum=   25   62
+Elsobj=  -4053.5504      -LL=  -1015.9428      evals =   38  ITRMCDsum=   25   55
+Elsobj=  -4053.5553      -LL=  -1015.9453      evals =   39  ITRMCDsum=   25   52
+Elsobj=  -4053.5454      -LL=  -1015.9403      evals =   40  ITRMCDsum=   25   49
+Elsobj=  -4053.5508      -LL=  -1015.9430      evals =   41  ITRMCDsum=   25   40
+Elsobj=  -4053.5520      -LL=  -1015.9436      evals =   42  ITRMCDsum=   25   43
+ max element scaled gradient and tol =   1.2583027228157087E-002   2.0000000000000001E-004
+ itotaliter,itncnt,stepmax=           5           5  0.75000000000000000     
+ new lineq search starts at fc =   -1015.9412227125943     
+Elsobj=  -4054.3168      -LL=  -1016.3260      evals =   43  ITRMCDsum=   25   78
+ fc, fp on linesearch exit  -1015.9412227125943       -1016.3260189632181     
+ computing forward difference gradient
+Elsobj=  -4054.3119      -LL=  -1016.3236      evals =   44  ITRMCDsum=   25   68
+Elsobj=  -4054.3153      -LL=  -1016.3252      evals =   45  ITRMCDsum=   25   64
+Elsobj=  -4054.3191      -LL=  -1016.3271      evals =   46  ITRMCDsum=   25   51
+Elsobj=  -4054.3192      -LL=  -1016.3272      evals =   47  ITRMCDsum=   25   51
+Elsobj=  -4054.3148      -LL=  -1016.3250      evals =   48  ITRMCDsum=   25   49
+Elsobj=  -4054.3168      -LL=  -1016.3260      evals =   49  ITRMCDsum=   25   39
+Elsobj=  -4054.3194      -LL=  -1016.3273      evals =   50  ITRMCDsum=   25   42
+ max element scaled gradient and tol =   7.6679519081771265E-003   2.0000000000000001E-004
+ itotaliter,itncnt,stepmax=           6           6  0.75000000000000000     
+ new lineq search starts at fc =   -1016.3260189632181     
+Elsobj=  -4054.5514      -LL=  -1016.4433      evals =   51  ITRMCDsum=   25   77
+ fc, fp on linesearch exit  -1016.3260189632181       -1016.4433297029839     
+ computing forward difference gradient
+Elsobj=  -4054.5491      -LL=  -1016.4422      evals =   52  ITRMCDsum=   25   69
+Elsobj=  -4054.5500      -LL=  -1016.4426      evals =   53  ITRMCDsum=   25   68
+Elsobj=  -4054.5524      -LL=  -1016.4438      evals =   54  ITRMCDsum=   25   59
+Elsobj=  -4054.5519      -LL=  -1016.4436      evals =   55  ITRMCDsum=   25   50
+Elsobj=  -4054.5520      -LL=  -1016.4436      evals =   56  ITRMCDsum=   25   49
+Elsobj=  -4054.5494      -LL=  -1016.4423      evals =   57  ITRMCDsum=   25   40
+Elsobj=  -4054.5524      -LL=  -1016.4438      evals =   58  ITRMCDsum=   25   43
+ max element scaled gradient and tol =   3.6669780937620931E-003   2.0000000000000001E-004
+ itotaliter,itncnt,stepmax=           7           7  0.75000000000000000     
+ new lineq search starts at fc =   -1016.4433297029839     
+Elsobj=  -4054.6090      -LL=  -1016.4721      evals =   59  ITRMCDsum=   25   77
+ fc, fp on linesearch exit  -1016.4433297029839       -1016.4721291061394     
+ computing forward difference gradient
+Elsobj=  -4054.6086      -LL=  -1016.4719      evals =   60  ITRMCDsum=   25   60
+Elsobj=  -4054.6087      -LL=  -1016.4720      evals =   61  ITRMCDsum=   25   61
+Elsobj=  -4054.6099      -LL=  -1016.4726      evals =   62  ITRMCDsum=   25   53
+Elsobj=  -4054.6085      -LL=  -1016.4719      evals =   63  ITRMCDsum=   25   50
+Elsobj=  -4054.6082      -LL=  -1016.4717      evals =   64  ITRMCDsum=   25   49
+Elsobj=  -4054.6069      -LL=  -1016.4711      evals =   65  ITRMCDsum=   25   39
+Elsobj=  -4054.6097      -LL=  -1016.4724      evals =   66  ITRMCDsum=   25   44
+ max element scaled gradient and tol =   3.2899159931765133E-003   2.0000000000000001E-004
+ itotaliter,itncnt,stepmax=           8           8  0.75000000000000000     
+ new lineq search starts at fc =   -1016.4721291061394     
+Elsobj=  -4054.6482      -LL=  -1016.4917      evals =   67  ITRMCDsum=   25   75
+ fc, fp on linesearch exit  -1016.4721291061394       -1016.4917227529066     
+ computing forward difference gradient
+Elsobj=  -4054.6498      -LL=  -1016.4925      evals =   68  ITRMCDsum=   25   55
+Elsobj=  -4054.6486      -LL=  -1016.4919      evals =   69  ITRMCDsum=   25   63
+Elsobj=  -4054.6491      -LL=  -1016.4921      evals =   70  ITRMCDsum=   25   57
+Elsobj=  -4054.6481      -LL=  -1016.4917      evals =   71  ITRMCDsum=   25   50
+Elsobj=  -4054.6488      -LL=  -1016.4920      evals =   72  ITRMCDsum=   25   49
+Elsobj=  -4054.6469      -LL=  -1016.4911      evals =   73  ITRMCDsum=   25   39
+Elsobj=  -4054.6490      -LL=  -1016.4921      evals =   74  ITRMCDsum=   25   42
+ max element scaled gradient and tol =   2.4070227375442956E-003   2.0000000000000001E-004
+ itotaliter,itncnt,stepmax=           9           9  0.75000000000000000     
+ new lineq search starts at fc =   -1016.4917227529066     
+Elsobj=  -4054.6772      -LL=  -1016.5062      evals =   75  ITRMCDsum=   25   65
+ fc, fp on linesearch exit  -1016.4917227529066       -1016.5061990842481     
+ computing forward difference gradient
+Elsobj=  -4054.6789      -LL=  -1016.5070      evals =   76  ITRMCDsum=   25   54
+Elsobj=  -4054.6772      -LL=  -1016.5062      evals =   77  ITRMCDsum=   25   60
+Elsobj=  -4054.6775      -LL=  -1016.5064      evals =   78  ITRMCDsum=   25   54
+Elsobj=  -4054.6768      -LL=  -1016.5060      evals =   79  ITRMCDsum=   25   51
+Elsobj=  -4054.6773      -LL=  -1016.5062      evals =   80  ITRMCDsum=   25   48
+Elsobj=  -4054.6763      -LL=  -1016.5058      evals =   81  ITRMCDsum=   25   38
+Elsobj=  -4054.6777      -LL=  -1016.5065      evals =   82  ITRMCDsum=   25   42
+ max element scaled gradient and tol =   2.6318649417373281E-003   2.0000000000000001E-004
+ itotaliter,itncnt,stepmax=          10          10  0.75000000000000000     
+ new lineq search starts at fc =   -1016.5061990842481     
+Elsobj=  -4054.7059      -LL=  -1016.5205      evals =   83  ITRMCDsum=   25   75
+ fc, fp on linesearch exit  -1016.5061990842481       -1016.5205421448035     
+ computing forward difference gradient
+Elsobj=  -4054.7068      -LL=  -1016.5210      evals =   84  ITRMCDsum=   25   54
+Elsobj=  -4054.7061      -LL=  -1016.5207      evals =   85  ITRMCDsum=   25   61
+Elsobj=  -4054.7058      -LL=  -1016.5205      evals =   86  ITRMCDsum=   25   56
+Elsobj=  -4054.7061      -LL=  -1016.5206      evals =   87  ITRMCDsum=   25   50
+Elsobj=  -4054.7060      -LL=  -1016.5206      evals =   88  ITRMCDsum=   25   49
+Elsobj=  -4054.7060      -LL=  -1016.5206      evals =   89  ITRMCDsum=   25   39
+Elsobj=  -4054.7062      -LL=  -1016.5207      evals =   90  ITRMCDsum=   25   42
+ max element scaled gradient and tol =   1.5064974014970980E-003   2.0000000000000001E-004
+ itotaliter,itncnt,stepmax=          11          11  0.75000000000000000     
+ new lineq search starts at fc =   -1016.5205421448035     
+Elsobj=  -4054.7117      -LL=  -1016.5235      evals =   91  ITRMCDsum=   25   71
+ fc, fp on linesearch exit  -1016.5205421448035       -1016.5234642210738     
+ computing forward difference gradient
+Elsobj=  -4054.7121      -LL=  -1016.5236      evals =   92  ITRMCDsum=   25   51
+Elsobj=  -4054.7118      -LL=  -1016.5235      evals =   93  ITRMCDsum=   25   60
+Elsobj=  -4054.7116      -LL=  -1016.5234      evals =   94  ITRMCDsum=   25   54
+Elsobj=  -4054.7118      -LL=  -1016.5235      evals =   95  ITRMCDsum=   25   50
+Elsobj=  -4054.7118      -LL=  -1016.5235      evals =   96  ITRMCDsum=   25   49
+Elsobj=  -4054.7118      -LL=  -1016.5235      evals =   97  ITRMCDsum=   25   38
+Elsobj=  -4054.7119      -LL=  -1016.5236      evals =   98  ITRMCDsum=   25   43
+ max element scaled gradient and tol =   5.7087607146337743E-004   2.0000000000000001E-004
+ itotaliter,itncnt,stepmax=          12          12  0.75000000000000000     
+ new lineq search starts at fc =   -1016.5234642210738     
+Elsobj=  -4054.7128      -LL=  -1016.5240      evals =   99  ITRMCDsum=   25   52
+ fc, fp on linesearch exit  -1016.5234642210738       -1016.5239940147442     
+ computing forward difference gradient
+Elsobj=  -4054.7124      -LL=  -1016.5238      evals =  100  ITRMCDsum=   25   51
+Elsobj=  -4054.7126      -LL=  -1016.5239      evals =  101  ITRMCDsum=   25   62
+Elsobj=  -4054.7125      -LL=  -1016.5239      evals =  102  ITRMCDsum=   25   54
+Elsobj=  -4054.7126      -LL=  -1016.5239      evals =  103  ITRMCDsum=   25   50
+Elsobj=  -4054.7126      -LL=  -1016.5239      evals =  104  ITRMCDsum=   25   49
+Elsobj=  -4054.7127      -LL=  -1016.5239      evals =  105  ITRMCDsum=   25   40
+Elsobj=  -4054.7127      -LL=  -1016.5239      evals =  106  ITRMCDsum=   25   46
+ max element scaled gradient and tol =   6.0363946865524439E-004   2.0000000000000001E-004
+ itotaliter,itncnt,stepmax=          13          13  0.75000000000000000     
+ new lineq search starts at fc =   -1016.5239940147442     
+Elsobj=  -4054.7125      -LL=  -1016.5239      evals =  107  ITRMCDsum=   25   55
+Elsobj=  -4054.7127      -LL=  -1016.5240      evals =  108  ITRMCDsum=   25   52
+Elsobj=  -4054.7127      -LL=  -1016.5240      evals =  109  ITRMCDsum=   25   50
+Elsobj=  -4054.7127      -LL=  -1016.5239      evals =  110  ITRMCDsum=   25   50
+Elsobj=  -4054.7126      -LL=  -1016.5239      evals =  111  ITRMCDsum=   25   50
+Elsobj=  -4054.7127      -LL=  -1016.5240      evals =  112  ITRMCDsum=   25   27
+Elsobj=  -4054.7128      -LL=  -1016.5240      evals =  113  ITRMCDsum=   25   25
+ fc, fp on linesearch exit  -1016.5239940147442       -1016.5239940147442     
+ computing central difference gradient
+Elsobj=  -4054.6924      -LL=  -1016.5138      evals =  114  ITRMCDsum=   25   75
+Elsobj=  -4054.7018      -LL=  -1016.5185      evals =  115  ITRMCDsum=   25   75
+Elsobj=  -4054.6924      -LL=  -1016.5138      evals =  116  ITRMCDsum=   25   74
+Elsobj=  -4054.6883      -LL=  -1016.5118      evals =  117  ITRMCDsum=   25   76
+Elsobj=  -4054.7065      -LL=  -1016.5209      evals =  118  ITRMCDsum=   25   72
+Elsobj=  -4054.7054      -LL=  -1016.5203      evals =  119  ITRMCDsum=   25   69
+Elsobj=  -4054.6633      -LL=  -1016.4992      evals =  120  ITRMCDsum=   25   64
+Elsobj=  -4054.6580      -LL=  -1016.4966      evals =  121  ITRMCDsum=   25   64
+Elsobj=  -4054.6773      -LL=  -1016.5062      evals =  122  ITRMCDsum=   25   63
+Elsobj=  -4054.6738      -LL=  -1016.5045      evals =  123  ITRMCDsum=   25   55
+Elsobj=  -4054.7091      -LL=  -1016.5221      evals =  124  ITRMCDsum=   25   50
+Elsobj=  -4054.7081      -LL=  -1016.5217      evals =  125  ITRMCDsum=   25   49
+Elsobj=  -4054.7094      -LL=  -1016.5223      evals =  126  ITRMCDsum=   25   54
+Elsobj=  -4054.7080      -LL=  -1016.5216      evals =  127  ITRMCDsum=   25   54
+ new lineq search starts at fc =   -1016.5239940147442     
+Elsobj=  -4054.7130      -LL=  -1016.5241      evals =  128  ITRMCDsum=   25   63
+ fc, fp on linesearch exit  -1016.5239940147442       -1016.5241353452609     
+ computing central difference gradient
+Elsobj=  -4054.6970      -LL=  -1016.5161      evals =  129  ITRMCDsum=   25   75
+Elsobj=  -4054.6981      -LL=  -1016.5166      evals =  130  ITRMCDsum=   25   75
+Elsobj=  -4054.6910      -LL=  -1016.5131      evals =  131  ITRMCDsum=   25   75
+Elsobj=  -4054.6910      -LL=  -1016.5131      evals =  132  ITRMCDsum=   25   75
+Elsobj=  -4054.7059      -LL=  -1016.5206      evals =  133  ITRMCDsum=   25   71
+Elsobj=  -4054.7070      -LL=  -1016.5211      evals =  134  ITRMCDsum=   25   68
+Elsobj=  -4054.6610      -LL=  -1016.4981      evals =  135  ITRMCDsum=   25   56
+Elsobj=  -4054.6614      -LL=  -1016.4983      evals =  136  ITRMCDsum=   25   55
+Elsobj=  -4054.6768      -LL=  -1016.5060      evals =  137  ITRMCDsum=   25   59
+Elsobj=  -4054.6754      -LL=  -1016.5053      evals =  138  ITRMCDsum=   25   53
+Elsobj=  -4054.7090      -LL=  -1016.5221      evals =  139  ITRMCDsum=   25   49
+Elsobj=  -4054.7091      -LL=  -1016.5222      evals =  140  ITRMCDsum=   25   50
+Elsobj=  -4054.7099      -LL=  -1016.5226      evals =  141  ITRMCDsum=   25   51
+Elsobj=  -4054.7084      -LL=  -1016.5218      evals =  142  ITRMCDsum=   25   50
+ max element scaled gradient and tol =   8.0767421052771622E-005   2.0000000000000001E-004
+ -LAGLBestLL after umdriver =   -1016.5241353452609     
+ ITRMCD =            1
+ optimal internal paramvec = 
+           1   90.988075978417399     
+           2   4.8504194889213501     
+           3   99.233724068250169     
+           4   7.5948966812820844     
+           5  0.12677126286041751     
+           6  0.36608473378628770     
+           7  0.37817022726703708     
+Elsobj=  -4054.7130      -LL=  -1016.5241      evals =  143  ITRMCDsum=   25   25
+Elsobj=  -4054.7130      -LL=  -1016.5241      evals =  144  ITRMCDsum=   25   25
+ PrevMajorLL =    1.0000000000000000E+100 MajorLL =   -1016.5241353452609     
+ delta obj value from previous major iteration=  -1.0000000000000000E+100
+ Exiting main loop with ITRMCD=           1
+ Probable optimum.
+ LAGLBestLL =   -1016.5241353452609     
+ retrieved LAGLBestLL x-coord solution
+           1   90.988075978417399     
+           2   4.8504194889213501     
+           3   99.233724068250169     
+           4   7.5948966812820844     
+           5  0.12677126286041751     
+           6  0.36608473378628770     
+           7  0.37817022726703708     
+ stabilized -LL value =   -1016.5241353452609     
+ main engine time in secs=   1.2812500000000000     
+  exit code from umdriver =           1
+ TOTLAPLACE =    1016.5241353452609     
+Elsobj=  -4054.7130      -LL=  -1016.5241      evals =  145  ITRMCDsum=   25   25
+ Attempting LAGL standard error computation
+
+Elsobj=  -4054.7130      -LL=  -1016.5241      evals =  146  ITRMCDsum=   25   25
+ central difference, step size for std err =    9.9999997764825821E-003
+           1   90.988075978417399       -1016.5241353452609     
+           2   4.8504194889213501       -1016.5241353452609     
+           3   99.233724068250169       -1016.5241353452609     
+           4   7.5948966812820844       -1016.5241353452609     
+           5  0.12677126286041751       -1016.5241353452609     
+           6  0.36608473378628770       -1016.5241353452609     
+           7  0.37817022726703708       -1016.5241353452609     
+Elsobj=  -4054.7130      -LL=  -1016.5241      evals =  147  ITRMCDsum=   25   25
+Elsobj=  -4054.6402      -LL=  -1016.4877      evals =  148  ITRMCDsum=   25   82
+Elsobj=  -4054.6414      -LL=  -1016.4883      evals =  149  ITRMCDsum=   25   89
+Elsobj=  -4054.6464      -LL=  -1016.4908      evals =  150  ITRMCDsum=   25   95
+Elsobj=  -4054.6460      -LL=  -1016.4906      evals =  151  ITRMCDsum=   25  100
+Elsobj=  -4054.6816      -LL=  -1016.5084      evals =  152  ITRMCDsum=   25   75
+Elsobj=  -4054.6836      -LL=  -1016.5094      evals =  153  ITRMCDsum=   25   75
+Elsobj=  -4054.5419      -LL=  -1016.4386      evals =  154  ITRMCDsum=   25   71
+Elsobj=  -4054.5406      -LL=  -1016.4379      evals =  155  ITRMCDsum=   25   68
+Elsobj=  -4054.5424      -LL=  -1016.4388      evals =  156  ITRMCDsum=   25   71
+Elsobj=  -4054.5344      -LL=  -1016.4348      evals =  157  ITRMCDsum=   25   72
+Elsobj=  -4054.6945      -LL=  -1016.5149      evals =  158  ITRMCDsum=   25   49
+Elsobj=  -4054.6942      -LL=  -1016.5147      evals =  159  ITRMCDsum=   25   51
+Elsobj=  -4054.6967      -LL=  -1016.5160      evals =  160  ITRMCDsum=   25   53
+Elsobj=  -4054.6929      -LL=  -1016.5141      evals =  161  ITRMCDsum=   25   52
+Elsobj=  -4054.5730      -LL=  -1016.4541      evals =  162  ITRMCDsum=   25   81
+Elsobj=  -4054.5751      -LL=  -1016.4552      evals =  163  ITRMCDsum=   25   98
+Elsobj=  -4054.5737      -LL=  -1016.4544      evals =  164  ITRMCDsum=   25  100
+Elsobj=  -4054.5738      -LL=  -1016.4545      evals =  165  ITRMCDsum=   25   93
+Elsobj=  -4054.6119      -LL=  -1016.4736      evals =  166  ITRMCDsum=   25   88
+Elsobj=  -4054.6068      -LL=  -1016.4710      evals =  167  ITRMCDsum=   25   85
+Elsobj=  -4054.6077      -LL=  -1016.4715      evals =  168  ITRMCDsum=   25   86
+Elsobj=  -4054.6152      -LL=  -1016.4752      evals =  169  ITRMCDsum=   25   95
+Elsobj=  -4054.5561      -LL=  -1016.4457      evals =  170  ITRMCDsum=   25   99
+Elsobj=  -4054.6736      -LL=  -1016.5044      evals =  171  ITRMCDsum=   25   80
+Elsobj=  -4054.6757      -LL=  -1016.5055      evals =  172  ITRMCDsum=   25   81
+Elsobj=  -4054.5572      -LL=  -1016.4462      evals =  173  ITRMCDsum=   25  100
+Elsobj=  -4054.4489      -LL=  -1016.3921      evals =  174  ITRMCDsum=   25   86
+Elsobj=  -4054.4908      -LL=  -1016.4130      evals =  175  ITRMCDsum=   25   79
+Elsobj=  -4054.4880      -LL=  -1016.4116      evals =  176  ITRMCDsum=   25   78
+Elsobj=  -4054.4482      -LL=  -1016.3917      evals =  177  ITRMCDsum=   25   98
+Elsobj=  -4054.4766      -LL=  -1016.4059      evals =  178  ITRMCDsum=   25   91
+Elsobj=  -4054.4735      -LL=  -1016.4044      evals =  179  ITRMCDsum=   25  100
+Elsobj=  -4054.4725      -LL=  -1016.4038      evals =  180  ITRMCDsum=   25   98
+Elsobj=  -4054.4747      -LL=  -1016.4050      evals =  181  ITRMCDsum=   25   99
+Elsobj=  -4054.5078      -LL=  -1016.4215      evals =  182  ITRMCDsum=   25   73
+Elsobj=  -4054.5161      -LL=  -1016.4257      evals =  183  ITRMCDsum=   25   75
+Elsobj=  -4054.5077      -LL=  -1016.4215      evals =  184  ITRMCDsum=   25   75
+Elsobj=  -4054.5115      -LL=  -1016.4233      evals =  185  ITRMCDsum=   25   74
+Elsobj=  -4054.4752      -LL=  -1016.4052      evals =  186  ITRMCDsum=   25   75
+Elsobj=  -4054.4652      -LL=  -1016.4002      evals =  187  ITRMCDsum=   25  100
+Elsobj=  -4054.4561      -LL=  -1016.3957      evals =  188  ITRMCDsum=   25  100
+Elsobj=  -4054.4682      -LL=  -1016.4017      evals =  189  ITRMCDsum=   25   75
+Elsobj=  -4054.4816      -LL=  -1016.4084      evals =  190  ITRMCDsum=   25   79
+Elsobj=  -4054.4694      -LL=  -1016.4023      evals =  191  ITRMCDsum=   25  100
+Elsobj=  -4054.4617      -LL=  -1016.3985      evals =  192  ITRMCDsum=   25   99
+Elsobj=  -4054.4729      -LL=  -1016.4040      evals =  193  ITRMCDsum=   25   78
+Elsobj=  -4054.5160      -LL=  -1016.4256      evals =  194  ITRMCDsum=   25   76
+Elsobj=  -4054.5080      -LL=  -1016.4216      evals =  195  ITRMCDsum=   25   77
+Elsobj=  -4054.4978      -LL=  -1016.4165      evals =  196  ITRMCDsum=   25   77
+Elsobj=  -4054.5099      -LL=  -1016.4225      evals =  197  ITRMCDsum=   25   76
+Elsobj=  -4054.3922      -LL=  -1016.3637      evals =  198  ITRMCDsum=   25   75
+Elsobj=  -4054.3552      -LL=  -1016.3452      evals =  199  ITRMCDsum=   25   75
+Elsobj=  -4054.3416      -LL=  -1016.3384      evals =  200  ITRMCDsum=   25   75
+Elsobj=  -4054.3769      -LL=  -1016.3561      evals =  201  ITRMCDsum=   25   75
+Elsobj=  -4054.6228      -LL=  -1016.4790      evals =  202  ITRMCDsum=   25   81
+Elsobj=  -4054.6245      -LL=  -1016.4799      evals =  203  ITRMCDsum=   25   90
+Elsobj=  -4054.6202      -LL=  -1016.4777      evals =  204  ITRMCDsum=   25   83
+Elsobj=  -4054.6208      -LL=  -1016.4780      evals =  205  ITRMCDsum=   25   85
+Elsobj=  -4054.6278      -LL=  -1016.4815      evals =  206  ITRMCDsum=   25   95
+Elsobj=  -4054.6275      -LL=  -1016.4814      evals =  207  ITRMCDsum=   25  100
+Elsobj=  -4054.6276      -LL=  -1016.4814      evals =  208  ITRMCDsum=   25   95
+Elsobj=  -4054.6270      -LL=  -1016.4811      evals =  209  ITRMCDsum=   25  100
+Elsobj=  -4054.6622      -LL=  -1016.4987      evals =  210  ITRMCDsum=   25   75
+Elsobj=  -4054.6660      -LL=  -1016.5006      evals =  211  ITRMCDsum=   25   74
+Elsobj=  -4054.6636      -LL=  -1016.4994      evals =  212  ITRMCDsum=   25   75
+Elsobj=  -4054.6638      -LL=  -1016.4995      evals =  213  ITRMCDsum=   25   75
+Elsobj=  -4054.5255      -LL=  -1016.4304      evals =  214  ITRMCDsum=   25   71
+Elsobj=  -4054.5200      -LL=  -1016.4276      evals =  215  ITRMCDsum=   25   73
+Elsobj=  -4054.5208      -LL=  -1016.4280      evals =  216  ITRMCDsum=   25   72
+Elsobj=  -4054.5238      -LL=  -1016.4295      evals =  217  ITRMCDsum=   25   68
+Elsobj=  -4054.5230      -LL=  -1016.4291      evals =  218  ITRMCDsum=   25   75
+Elsobj=  -4054.5167      -LL=  -1016.4260      evals =  219  ITRMCDsum=   25   75
+Elsobj=  -4054.5243      -LL=  -1016.4298      evals =  220  ITRMCDsum=   25   74
+Elsobj=  -4054.5147      -LL=  -1016.4249      evals =  221  ITRMCDsum=   25   75
+Elsobj=  -4054.6241      -LL=  -1016.4797      evals =  222  ITRMCDsum=   25   82
+Elsobj=  -4054.6249      -LL=  -1016.4801      evals =  223  ITRMCDsum=   25   88
+Elsobj=  -4054.6199      -LL=  -1016.4775      evals =  224  ITRMCDsum=   25   82
+Elsobj=  -4054.6214      -LL=  -1016.4783      evals =  225  ITRMCDsum=   25   89
+Elsobj=  -4054.6303      -LL=  -1016.4828      evals =  226  ITRMCDsum=   25   95
+Elsobj=  -4054.6320      -LL=  -1016.4836      evals =  227  ITRMCDsum=   25  100
+Elsobj=  -4054.6261      -LL=  -1016.4807      evals =  228  ITRMCDsum=   25   95
+Elsobj=  -4054.6233      -LL=  -1016.4793      evals =  229  ITRMCDsum=   25  100
+Elsobj=  -4054.6811      -LL=  -1016.5081      evals =  230  ITRMCDsum=   25   75
+Elsobj=  -4054.6521      -LL=  -1016.4937      evals =  231  ITRMCDsum=   25   74
+Elsobj=  -4054.6453      -LL=  -1016.4902      evals =  232  ITRMCDsum=   25   75
+Elsobj=  -4054.6790      -LL=  -1016.5071      evals =  233  ITRMCDsum=   25   75
+Elsobj=  -4054.5284      -LL=  -1016.4318      evals =  234  ITRMCDsum=   25   70
+Elsobj=  -4054.5215      -LL=  -1016.4284      evals =  235  ITRMCDsum=   25   71
+Elsobj=  -4054.5189      -LL=  -1016.4271      evals =  236  ITRMCDsum=   25   72
+Elsobj=  -4054.5232      -LL=  -1016.4292      evals =  237  ITRMCDsum=   25   71
+Elsobj=  -4054.5243      -LL=  -1016.4298      evals =  238  ITRMCDsum=   25   75
+Elsobj=  -4054.5199      -LL=  -1016.4275      evals =  239  ITRMCDsum=   25   75
+Elsobj=  -4054.5240      -LL=  -1016.4296      evals =  240  ITRMCDsum=   25   73
+Elsobj=  -4054.5124      -LL=  -1016.4238      evals =  241  ITRMCDsum=   25   75
+Elsobj=  -4054.6780      -LL=  -1016.5066      evals =  242  ITRMCDsum=   25   53
+Elsobj=  -4054.6780      -LL=  -1016.5066      evals =  243  ITRMCDsum=   25   53
+Elsobj=  -4054.6746      -LL=  -1016.5049      evals =  244  ITRMCDsum=   25   52
+Elsobj=  -4054.6738      -LL=  -1016.5045      evals =  245  ITRMCDsum=   25   52
+Elsobj=  -4054.7130      -LL=  -1016.5241      evals =  246  ITRMCDsum=   25   25
+Elsobj=  -4054.7130      -LL=  -1016.5241      evals =  247  ITRMCDsum=   25   25
+
+ Standard errors of estimated parameters
+
+ internal_coords     Param_val       Hessinv         Sandwich        Score
+
+          1        0.909881E+02    0.340652E+01    0.328135E+01    0.624827E+01
+          2        0.485042E+01    0.262799E+00    0.294947E+00    0.375818E+00
+          3        0.992337E+02    0.845840E+01    0.980529E+01    0.759684E+01
+          4        0.759490E+01    0.184359E+00    0.221566E+00    0.171676E+00
+          5        0.126771E+00    0.304036E-02    0.357365E-02    0.296394E-02
+          6        0.366085E+00    0.267847E-01    0.228916E-01    0.388206E-01
+          7        0.378170E+00    0.314739E-01    0.314537E-01    0.388244E-01
+
+ external_coords    Param_val       Hessinv         Sandwich        Score
+
+          1        0.909881E+02    0.340652E+01    0.328135E+01    0.624827E+01
+          2        0.485042E+01    0.262799E+00    0.294947E+00    0.375818E+00
+          3        0.992337E+02    0.845840E+01    0.980529E+01    0.759684E+01
+          4        0.759490E+01    0.184359E+00    0.221566E+00    0.171676E+00
+          5        0.126771E+00    0.304036E-02    0.357365E-02    0.296394E-02
+          6        0.134018E+00    0.196109E-01    0.167605E-01    0.284233E-01
+          7        0.143013E+00    0.238050E-01    0.237897E-01    0.293644E-01
+ Elapsed Engine Run Time = 
+         1.281
+ std error time=
+         1.297
+
+Elsobj=  -4054.7130      -LL=  -1016.5241      evals =  448  ITRMCDsum=   25    0
+
+ Final parameter estimates
+
+ theta=
+    1    0.909881E+02
+    2    0.485042E+01
+    3    0.992337E+02
+    4    0.759490E+01
+    5    0.126771E+00
+
+ omega=
+         0.134018E+00
+         0.000000E+00    0.143013E+00
+
+ sigmasq=
+         0.160710E-01
+ sigmaLchol=
+         0.126771E+00
+
+ -Loglikelihood=
+     -1016.524
+ -2*Loglikelihood=
+     -2033.048
+ ELS Obj. function=
+     -4054.713
+
+  Epsilon shrinkage for CEps =     0.090227
+
+ RUNTIMES
+
+   engine runtime (secs) =      1.281
+   stderr runtime (secs) =      1.297
+ Normal exit from engine 5, exit code =           1

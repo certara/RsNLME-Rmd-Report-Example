@@ -1,0 +1,84 @@
+h1.title {
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+h4.author {
+  font-weight:bold;
+  font-style:italic;
+  margin-top: 0em;
+  margin-bottom: 1em;
+}
+h4.date {
+  font-weight:bold;
+  margin-top: 0em;
+  margin-bottom: 2em;
+}
+
+
+h1  {/* Define a margin before h1 element */
+  margin-top: 1em;
+  font-weight: bold;
+}
+h2  {
+  margin-top: 2em;
+  font-weight: bold;
+}
+h3  {
+  margin-top: 2em;
+  font-weight: bold;
+}
+h4  {
+  margin-top: 4em;
+  font-weight: bold;
+}
+
+/* -----------div tips------------- */
+
+#description {
+    padding: 1em;
+    margin: 1em;
+    padding-left: 50px;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: 10px 10px;
+    min-height: 40px;
+    font-size: 16px;
+    color: #000000;
+    background-color: #bed3ec;
+    border: solid 5px #dfedff;
+    background-image: url("file-medical-solid.svg");
+    }
+
+#results {
+    padding: 1em;
+    margin: 1em;
+    padding-left: 50px;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: 10px 10px;
+    min-height: 40px;
+    font-size: 16px;
+    color: #000000;
+    background-color: #FAD07D;
+    border: solid 5px #FFDE9C;
+    }
+  
+#keymessage {
+    padding: 1em;
+    margin: 1em;
+    padding-left: 50px;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: 10px 10px;
+    min-height: 40px;
+    font-size: 16px;
+    color: #000000;
+    background-color: #b1eba8;
+    border: solid 5px #e0f3e4;
+    background-image: url("file-medical-solid.svg");
+    }
+
+.rmd-icon {
+  padding: 5px;
+  height: 50px;
+  }

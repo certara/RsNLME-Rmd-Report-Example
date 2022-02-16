@@ -1,0 +1,185 @@
+ ELS FOCE/general Laplace engine log file 
+
+ MAX major iterations =         100
+ MAX Niter (line searches per major iteration) =        1000
+
+
+ Model evaluation ODE level used:
+  0=none
+
+ Other flags and run conditions/tolerances:
+
+       100  NSUB
+         7  NUMFREEPARAM
+         4  NUMFREEFIXEF
+         1  NUMFREEEPS  
+         2  NUMFREEOMEGAPARAM
+         2  NUMRANEF
+         1  Allow Gaussian Fit
+         5  IDENGINE
+         0  IFLAGRESTART
+         1  IFLAGSTDERR 
+         0  IFLAGNP     
+         1  IFLAGFOCEHESS
+         1  NORDERAGQ
+         4  NUMPROCS 
+        13  NDIGITblup 
+         7  NDIGITlagl 
+ 0.200E-02  tolmodlinz 
+ 0.100E-01  tolstderr  
+         0  NREP_PCWRES
+         1  NPRESAMPLE 
+         0  NGETMAPNP  
+           0  iflaganagrad
+           0  iodelevelused
+           1  iflagstderr 
+           1  iflagwhichstderr
+
+
+ Initial parameter values:
+
+  0.80000000E+02        1   1 THETA
+  0.60000000E+01        2   1 THETA
+  0.10000000E+03        3   1 THETA
+  0.90000000E+01        4   1 THETA
+  0.20000000E+00        1   1 EPS_STD_DEV
+  0.40000000E-01        1   1 EPS_VARIANCE
+  0.10000000E+00        1   1 OMEGA
+  0.00000000E+00        2   1 OMEGA
+  0.10000000E+00        2   2 OMEGA
+ -0.84941307E+03        1   1 -LOGLIKE
+ -0.37204909E+04        1   1 ELSOBJ  
+
+ Total # Subjects     =         100
+ Total # Observations =        1100
+
+
+ FOCE Hessian approximation used
+iteration =     1    LL value =   -1007.9627    
+iteration =     2    LL value =   -1014.0996    
+iteration =     3    LL value =   -1014.9089    
+iteration =     4    LL value =   -1015.9412    
+iteration =     5    LL value =   -1016.3260    
+iteration =     6    LL value =   -1016.4433    
+iteration =     7    LL value =   -1016.4721    
+iteration =     8    LL value =   -1016.4917    
+iteration =     9    LL value =   -1016.5062    
+iteration =    10    LL value =   -1016.5205    
+iteration =    11    LL value =   -1016.5235    
+iteration =    12    LL value =   -1016.5240    
+iteration =    13    LL value =   -1016.5241    
+ Main umdriver optimization for engine 5 terminated
+ ITRMCD exit code from umdriver =            1
+ 1,2,3 = probable success, 4 = maxiterations reached
+ 7 = Linesearch failed to find any good gradient to move
+
+ Starting std error computation
+
+ Hessian based std error successful
+ Standard errors of estimated parameters
+
+internal_coords  Param       Param_val         Std_err     rel_std_err
+
+       1         tvV    0.909881E+02    0.340652E+01    0.374392E-01
+       2        tvCl    0.485042E+01    0.262799E+00    0.541806E-01
+       3        tvV2    0.992337E+02    0.845840E+01    0.852372E-01
+       4       tvCl2    0.759490E+01    0.184359E+00    0.242740E-01
+       5        CEps    0.126771E+00    0.304036E-02    0.239830E-01
+       6          nV    0.366085E+00    0.267847E-01    0.731652E-01
+       7         nCl    0.378170E+00    0.314739E-01    0.832269E-01
+
+
+external_coords  Param       Param_val         Std_err     rel_std_err
+
+       1         tvV    0.909881E+02    0.340652E+01    0.374392E-01
+       2        tvCl    0.485042E+01    0.262799E+00    0.541806E-01
+       3        tvV2    0.992337E+02    0.845840E+01    0.852372E-01
+       4       tvCl2    0.759490E+01    0.184359E+00    0.242740E-01
+       5        CEps    0.126771E+00    0.304036E-02    0.239830E-01
+       6          nV    0.134018E+00    0.196109E-01    0.146330E+00
+       7         nCl    0.143013E+00    0.238050E-01    0.166454E+00
+
+
+ Score based  std error successful
+ Standard errors of estimated parameters
+
+internal_coords  Param       Param_val         Std_err     rel_std_err
+
+       1         tvV    0.909881E+02    0.624827E+01    0.686713E-01
+       2        tvCl    0.485042E+01    0.375818E+00    0.774815E-01
+       3        tvV2    0.992337E+02    0.759684E+01    0.765551E-01
+       4       tvCl2    0.759490E+01    0.171676E+00    0.226042E-01
+       5        CEps    0.126771E+00    0.296394E-02    0.233802E-01
+       6          nV    0.366085E+00    0.388206E-01    0.106043E+00
+       7         nCl    0.378170E+00    0.388244E-01    0.102664E+00
+
+
+external_coords  Param       Param_val         Std_err     rel_std_err
+
+       1         tvV    0.909881E+02    0.624827E+01    0.686713E-01
+       2        tvCl    0.485042E+01    0.375818E+00    0.774815E-01
+       3        tvV2    0.992337E+02    0.759684E+01    0.765551E-01
+       4       tvCl2    0.759490E+01    0.171676E+00    0.226042E-01
+       5        CEps    0.126771E+00    0.296394E-02    0.233802E-01
+       6          nV    0.134018E+00    0.284233E-01    0.212086E+00
+       7         nCl    0.143013E+00    0.293644E-01    0.205328E+00
+
+
+ Sandwich based std error successful
+ Standard errors of estimated parameters
+
+internal_coords  Param       Param_val         Std_err     rel_std_err
+
+       1         tvV    0.909881E+02    0.328135E+01    0.360635E-01
+       2        tvCl    0.485042E+01    0.294947E+00    0.608085E-01
+       3        tvV2    0.992337E+02    0.980529E+01    0.988100E-01
+       4       tvCl2    0.759490E+01    0.221566E+00    0.291730E-01
+       5        CEps    0.126771E+00    0.357365E-02    0.281898E-01
+       6          nV    0.366085E+00    0.228916E-01    0.625309E-01
+       7         nCl    0.378170E+00    0.314537E-01    0.831733E-01
+
+
+external_coords  Param       Param_val         Std_err     rel_std_err
+
+       1         tvV    0.909881E+02    0.328135E+01    0.360635E-01
+       2        tvCl    0.485042E+01    0.294947E+00    0.608085E-01
+       3        tvV2    0.992337E+02    0.980529E+01    0.988100E-01
+       4       tvCl2    0.759490E+01    0.221566E+00    0.291730E-01
+       5        CEps    0.126771E+00    0.357365E-02    0.281898E-01
+       6          nV    0.134018E+00    0.167605E-01    0.125062E+00
+       7         nCl    0.143013E+00    0.237897E-01    0.166347E+00
+
+
+ Engine Convergence Summary:
+ Convergence achieved
+
+ ITRMCD value on last iteration =           1
+ NLME7 return code=           1
+
+ Optimal parameters:
+
+  0.90988076E+02        1   1 THETA        BOUNDS:  -0.100+101  0.100+101
+  0.48504195E+01        2   1 THETA        BOUNDS:  -0.100+101  0.100+101
+  0.99233724E+02        3   1 THETA        BOUNDS:  -0.100+101  0.100+101
+  0.75948967E+01        4   1 THETA        BOUNDS:  -0.100+101  0.100+101
+  0.12677126E+00        1   1 EPS_STD_DEV  BOUNDS:   0.100E-02  0.100+101
+  0.16070953E-01        1   1 EPS_VARIANCE
+  0.13401803E+00        1   1 OMEGA
+  0.00000000E+00        2   1 OMEGA
+  0.14301272E+00        2   2 OMEGA
+ -0.10165241E+04        1   1 -LOGLIKE
+ -0.40547130E+04        1   1 ELSOBJ  
+ 
+ EPSILON SHRINKAGES
+  Epsilon shrinkage for CEps =     0.090227
+
+ ETA SHRINKAGES
+   eta-shrinkage( 1) =          0.01790
+   eta-shrinkage( 2) =          0.02443
+
+ RUNTIMES
+
+   engine runtime (secs) =      1.281
+   stderr runtime (secs) =      1.297
+
+ EXITCODE            1
