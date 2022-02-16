@@ -2,7 +2,9 @@
 
 ----
 
-An example of how to use RsNLME with R Markdown to efficiently prepare a report.  Click [here](BaseModelSummary.html) to view example report.
+An example of how to use RsNLME with R Markdown to efficiently prepare a report.
+
+<a href="BaseModelSummary.html" download>View Example Report</a>
 
 ![](img/overview_screenshot.png)
 
