@@ -37,3 +37,11 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# Ignore Run Folders
+TwoCptIV/
+vpc/
+modelTAsim/
+
+# Ignore RDS Files
+/*.RDS
