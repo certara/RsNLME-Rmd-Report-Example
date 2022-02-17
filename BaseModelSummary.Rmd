@@ -13,12 +13,15 @@ output:
 toctitle: Contents
 ---
 
-***
-
 ```{r certara-logo, echo=FALSE, fig.width=1, fig.height=10}
 htmltools::img(src = knitr::image_uri(file.path('img', 'certara.PNG')), 
                alt = 'logo', 
-               style = 'position:fixed; top:0; right:0; padding:5px; width:300px;')
+               style = 'position:fixed; top:0; right:0; padding:10px; width:300px;')
+
+library(flextable)
+
+
+
 ```
 
 # Notes and Conventions {.tabset .tabset-fade .tabset-pills} 
@@ -28,7 +31,7 @@ htmltools::img(src = knitr::image_uri(file.path('img', 'certara.PNG')),
 ::: {#description-overview}
 * This is an example R Markdown report to demonstrate the workflow for building a "data memo" or report object in parallel with the conduct of a RsNLME analysis.
 * We use html output and "tabsets" within the RMarkdown document to show how RsNLME can be used together with R markdown to produce very dense, interactive data summaries that capture a large amount of data in well organized, easily shared delivery mechanism.
-* We also show how RsNLME generates code specific to your analysis problem that allows you to get the job done, even if you're not an R expert!
+* We also show how RsNLME shiny apps generate code specific to your analysis problem that allows you to get the job done, even if you're not an R expert!
 :::
 
 ## Conventions used in this document
@@ -52,19 +55,6 @@ htmltools::img(src = knitr::image_uri(file.path('img', 'certara.PNG')),
 # Purpose         : Summarize Base PK model
 # Other Info      : Define your own!
 
-library(Certara.RsNLME)
-library(Certara.Xpose.NLME)
-library(Certara.ModelResults)
-library(tidyvpc)
-library(xpose)
-library(ggplot2)
-library(dplyr)
-library(flextable)
-library(gtsummary)
-library(DescTools)
-library(egg)
-library(tidyr)
-
 pkdata <- read.csv("pkdata.csv")
 
 ```
@@ -84,6 +74,7 @@ The purpose of this data memo is to provide a summary of the base population pha
 ::: {.description}
 *  Data analysis was conducted using the population pharmacokinetic program RsNLME version 1.1.0 (https://certara.github.io/R-RsNLME/index.html) 
 *  A two-compartment model with bolus input and first-order elimination from the central compartment was used to model the time course of drug XYZ plasma concentrations. The parameters of this model were clearance (Cl), volume of distribution of the central compartment (V), volume of distribution of the peripheral compartment (V2), and intercompartmental clearance (Cl2)
+*  Body weight was included as a covariate on Cl and V based on previous modeling work
 *  The base model was used to simulate individual concentration time profiles for 100 replicates of the study design, and AUC24 and Cmax were derived and summarized relative to target exposure thresholds 
 :::
 
@@ -101,14 +92,9 @@ The purpose of this data memo is to provide a summary of the base population pha
 ## Categorical covariate summary {.tabset .tabset-fade .tabset-pills}
 
 ```{r cat-cov-summary, echo = TRUE, warning=FALSE, message=FALSE}
-pkdata %>% 
-  filter(TIME == 0) %>% 
-  mutate(SEX = factor(SEX, labels=c('Male','Female'))) %>% 
-  select(SEX, STATUS, CENTER, SETTING) %>%
-  tbl_summary(by=CENTER) %>% 
-  modify_header(label = "**Variable**") %>% 
-  bold_labels() %>% 
-  modify_spanning_header(all_stat_cols() ~ "**Center**")
+
+catcovsumm <- readRDS(file='catcovsumm.RDS')
+catcovsumm
 
 ```
 
@@ -117,14 +103,9 @@ pkdata %>%
 ## Continuous covariate summary {.tabset .tabset-fade .tabset-pills}
 
 ```{r cont-cov-summary, echo = TRUE, warning=FALSE, message=FALSE}
-pkdata %>% 
-  filter(TIME == 0) %>% 
-  select(WT, AGE, CRCL, CENTER) %>%
-  tbl_summary(by=CENTER,
-    statistic = list(all_continuous() ~ "{mean} ({sd}) [{min}-{max}]")) %>% 
-  modify_header(label = "**Variable**") %>% 
-  bold_labels() %>% 
-  modify_spanning_header(all_stat_cols() ~ "**Center**")
+
+contcovsumm <- readRDS(file='contcovsumm.RDS')
+contcovsumm
 
 ```
 
@@ -133,12 +114,10 @@ pkdata %>%
 ## Mean profiles Linear {.tabset .tabset-fade .tabset-pills}
 
 ```{r mean-linear, echo = TRUE, warning=FALSE, message=FALSE, fig.width = 8, fig.height = 6}
-ggplot(subset(pkdata ,AMT==0), aes(x = TIME, y = DV, group = ID)) +  
-  geom_point(size=.8) +
-  geom_line(alpha=.2) + 
-  scale_x_continuous(limits=c(0,24)) + #limit plot to first dose
-  stat_summary(fun.y=mean,geom="line",aes(group=NULL),col='red',size=1) +
-  theme_certara()
+
+meanlinplot <- readRDS(file='meanlinplot.RDS')
+meanlinplot
+
 ```
 
 <br><br>
@@ -151,13 +130,9 @@ ggplot(subset(pkdata ,AMT==0), aes(x = TIME, y = DV, group = ID)) +
 
 ```{r mean-log, echo = TRUE, warning=FALSE, message=FALSE, fig.width = 8, fig.height = 6}
 
-ggplot(subset(pkdata ,AMT==0), aes(x = TIME, y = DV, group = ID)) +  
-  geom_point(size=.8) +
-  geom_line(alpha=.2) + 
-  scale_x_continuous(limits=c(0,24)) + #limit plot to first dose
-  stat_summary(fun.y=mean,geom="line",aes(group=NULL),col='red',size=1) +
-  scale_y_log10() +
-  theme_certara()
+meanlogplot <- readRDS(file='meanlogplot.RDS')
+meanlogplot
+
 
 ```
 
@@ -171,13 +146,8 @@ ggplot(subset(pkdata ,AMT==0), aes(x = TIME, y = DV, group = ID)) +
 
 ```{r gender-linear, echo = TRUE, warning=FALSE, message=FALSE, fig.width = 8, fig.height = 6}
 
-ggplot(subset(pkdata ,AMT==0), aes(x = TIME, y = DV, group = ID)) +  
-  geom_point(size=.8) +
-  geom_line(alpha=.2) + 
-  scale_x_continuous(limits=c(0,24)) +
-  stat_summary(fun.y=mean,geom="line",aes(group=NULL),col='red',size=1) +
-  facet_grid(~SEX) +
-  theme_certara()
+meanlinplotbysex <- readRDS(file='meanlinplotbysex.RDS')
+meanlinplotbysex
 
 ```
 
@@ -191,13 +161,8 @@ ggplot(subset(pkdata ,AMT==0), aes(x = TIME, y = DV, group = ID)) +
 
 ```{r wt-linear, echo = TRUE, warning=FALSE, message=FALSE, fig.width = 8, fig.height = 6}
 
-ggplot(subset(pkdata ,AMT==0), aes(x = TIME, y = DV, group = ID)) +  
-  geom_point(size=.8) +
-  geom_line(alpha=.2) + 
-  scale_x_continuous(limits=c(0,24)) +
-  stat_summary(fun.y=mean,geom="line",aes(group=NULL),col='red',size=1) +
-  facet_grid(~cut(WT,3)) +
-  theme_certara()
+meanlinplotbywt <- readRDS(file='meanlinplotbywt.RDS')
+meanlinplotbywt
 
 ```
 
@@ -218,182 +183,94 @@ ggplot(subset(pkdata ,AMT==0), aes(x = TIME, y = DV, group = ID)) +
 ::: {.results}
 *  A 2 compartment model with IV bolus input was used to fit the data
 *  Model parameters central clearance (Cl), central volume (V), inter-compartmental clearance (Cl2), and peripheral compartment volume (V2)
+*  Body weight covariate on Cl and V (parameters dCldWT and dVdWT, respectively)
 *  Between subject variability terms on Cl and V 
 *  Proportional residual error model
 :::
 
 ![Structural PK Model](img/2cptiv.png "Two Compartment with Bolus IV Input")
 
-
-
 ```{r, base-model-specification}
-ModelName<-"TwoCptIV"
-
-model <- pkmodel(numCompartments = 2,
-                  data = pkdata, ID = "ID", Time = "TIME", A1 = "AMT", CObs = "DV",
-                  modelName = ModelName)
-
-## Set Initial Estimates and remove Random Effect terms from Cl2 and V2
-model <- model %>%
-  structuralParameter(paramName = "Cl2", hasRandomEffect = FALSE) %>%
-  structuralParameter(paramName = "V2", hasRandomEffect = FALSE) %>%
-  fixedEffect(effect = c("tvV", "tvCl", "tvV2", "tvCl2"), value = c(80, 6, 100, 9)) %>%
-  randomEffect(effect = c("nV", "nCl"), value = c(0.1, 0.1)) %>%
-  residualError(predName = "C", SD = 0.2)
-
-## Add covariates to your model
-
-model <- model %>%
-  addCovariate(covariate = "WT", 
-               center = "Value",
-               centerValue=70, 
-               effect = c("V", "Cl")) %>%
-  addCovariate(covariate = "AGE") %>%
-  addCovariate(covariate = "CRCL") %>%
-  addCovariate(covariate = "SEX", type = "Categorical", levels = c(0, 1), 
-               labels = c("male", "female"))
 
 ## View the updated model 
+model<-readRDS("model.RDS")
 print(model)
-
-## Fit the model
-TwoCptIVfit <- fitmodel(model)
 
 ```
 
 ## GOF Plots {.tabset .tabset-fade .tabset-pills}
+### DV vs PRED
+```{r, dvpred}
+dvpred <- readRDS("dvpred.RDS")
+dvpred
+```
 
-```{r, base-model-gofxpose}
-xp <- xposeNlme(dir = model@modelInfo@workingDir, modelName = ModelName)
+### DV vs iPRED
+```{r, dvipred}
+dvipred <- readRDS("dvipred.RDS")
+dvipred
+```
 
-##  DV vs PRED/IPRED, Residuals, -- Many more diagnostics available in xpose package
-dv_vs_pred(xp, type = "p", subtitle = "-2LL: @ofv, nSubj: @nind")
-dv_vs_ipred(xp, type = "p")
-res_vs_idv(xp, type = "ps")
-res_vs_pred(xp, type = "ps")
+### CWRES vs TIME
+```{r, cwresidv}
+cwresidv <- readRDS("cwresidv.RDS")
+cwresidv
+```
+
+### CWRES vs PRED
+```{r, cwrespred}
+cwrespred <- readRDS("cwrespred.RDS")
+cwrespred
+```
+
+### ETA vs WT
+```{r, etacovcont}
+etacovcont <- readRDS("etacovcont.RDS")
+etacovcont
+```
+
+### ETA vs SEX
+```{r, etacovcat}
+etacovcat <- readRDS("etacovcat.RDS")
+etacovcat
 ```
 
 ## Parameter Estimates {.tabset .tabset-fade .tabset-pills}
 
-```{r, base-overall-table}
-table <- xp %>%
-  get_overallNlme() %>%
-  mutate(RetCode = as.integer(RetCode), nObs = as.integer(nObs), nSub = as.integer(nSub), nParm = as.integer(nParm)) %>%
-  flextable(col_keys = c("RetCode", "Condition", "logLik", "-2LL", "AIC", "BIC", "nParm", "nObs", "nSub")) %>%
-  set_header_labels(values = list(RetCode = "RetCode", Condition = "Condition", logLik = "LL", `-2LL` = "-2LL", AIC = "AIC", BIC = "BIC", nParm = "nParm", nObs = "nObs", nSub = "nSub")) %>%
-  set_caption(caption = "Table Overall") %>%
-  add_footer_row(values = "Source: script.R", colwidths = 9L) %>%
-  colformat_double(digits = 1L) %>%
-  align(align = "left", part = "all") %>%
-  set_table_properties(layout = "autofit") %>%
-  autofit() %>%
-  fontsize(size = 10, part = "all") %>%
-  font(fontname = "Times New Roman", part = "all") %>%
-  bold(part = "header")
-table
+### Overall Run Summary
+
+```{r, tableoverall}
+tableoverall <- readRDS("tableoverall.RDS")
+tableoverall
+
 ```
 
-```{r, echo = FALSE, message = FALSE, warning=FALSE}
-table <- xp %>%
-  get_prmNlme() %>%
-  filter(type == "the") %>%
-  select(-type, -diagonal, -n) %>%
-  mutate(`rse%` = as.numeric(rse) * 100) %>%
-  flextable(col_keys = c("name", "label", "value", "se", "rse%", "fixed", "2.5% CI", "97.5% CI")) %>%
-  set_header_labels(values = list(name = "Name", label = "Label", value = "Value", se = "SE", `rse%` = "RSE%", fixed = "Fixed", `2.5% CI` = "2.5% CI", `97.5% CI` = "97.5% CI")) %>%
-  set_caption(caption = "Table Theta") %>%
-  add_footer_row(values = "Source: script.R", colwidths = 8L) %>%
-  colformat_double(digits = 2L) %>%
-  align(align = "left", part = "all") %>%
-  set_table_properties(layout = "autofit") %>%
-  autofit() %>%
-  fontsize(size = 10, part = "all") %>%
-  font(fontname = "Times New Roman", part = "all") %>%
-  bold(part = "header")
-table
+### Thetas
 
-table <- xp %>%
-  get_prmNlme() %>%
-  filter(type == "ome") %>%
-  select(-type) %>%
-  mutate(`rse%` = as.numeric(rse) * 100) %>%
-  left_join(get_eta_shk(xp), by = "label") %>%
-  flextable(col_keys = c("name", "label", "value", "se", "rse%", "fixed", "diagonal", "2.5% CI", "97.5% CI", "shrinkage%")) %>%
-  set_header_labels(values = list(name = "Name", label = "Label", value = "Value", se = "SE", `rse%` = "RSE%", fixed = "Fixed", diagonal = "Diagonal", `2.5% CI` = "2.5% CI", `97.5% CI` = "97.5% CI", `shrinkage%` = "Shrinkage%")) %>%
-  set_caption(caption = "Table Omega") %>%
-  add_footer_row(values = "Source: script.R", colwidths = 10L) %>%
-  colformat_double(digits = 3L) %>%
-  align(align = "left", part = "all") %>%
-  set_table_properties(layout = "autofit") %>%
-  autofit() %>%
-  fontsize(size = 10, part = "all") %>%
-  font(fontname = "Times New Roman", part = "all") %>%
-  bold(part = "header")
-table
+```{r, tabletheta}
+tabletheta <- readRDS("tabletheta.RDS")
+tabletheta
+```
 
-table <- xp %>%
-  get_prmNlme() %>%
-  filter(type == "sig") %>%
-  select(-type) %>%
-  mutate(`rse%` = as.numeric(rse) * 100) %>%
-  left_join(get_eps_shk(xp), by = "label") %>%
-  flextable(col_keys = c("name", "label", "value", "se", "rse%", "fixed", "2.5% CI", "97.5% CI", "shrinkage%")) %>%
-  set_header_labels(values = list(name = "Name", label = "Label", value = "Value", se = "SE", `rse%` = "RSE%", fixed = "Fixed", `2.5% CI` = "2.5% CI", `97.5% CI` = "97.5% CI", `shrinkage%` = "Shrinkage%")) %>%
-  set_caption(caption = "Table Sigma") %>%
-  add_footer_row(values = "Source: script.R", colwidths = 9L) %>%
-  colformat_double(digits = 3L) %>%
-  align(align = "left", part = "all") %>%
-  set_table_properties(layout = "autofit") %>%
-  autofit() %>%
-  fontsize(size = 10, part = "all") %>%
-  font(fontname = "Times New Roman", part = "all") %>%
-  bold(part = "header")
-table
+### Omegas
 
+```{r, tableomega}
+tableomega <- readRDS("tableomega.RDS")
+tableomega
+```
+
+### Sigmas
+
+```{r, tablesigma}
+tablesigma <- readRDS("tablesigma.RDS")
+tablesigma
 ```
 
 ## Visual Predictive Check {.tabset .tabset-fade .tabset-pills}
 
-```{r base-vpc, fig.retina=2, out.width="140%"}
-vpcmod <- copyModel(model, acceptAllEffects = TRUE, modelName = "vpc")
-
-## Set up VPC arguments to have PRED outputted to simulation output dataset "predout.csv"
-vpcSetup <- NlmeVpcParams(numReplicates=100)
-
-## run the vpc using the vpcmodel function
-vpcfit <- vpcmodel(model = vpcmod, vpcParams = vpcSetup)
-
-## VPC simulation input dataset (obs data)
-ObsData <- vpcfit$predcheck0
-
-## VPC simulation output dataset
-SimData <- vpcfit$predout
-
-
-vpc <- observed(ObsData, x = IVAR, y = DV) %>%
-  simulated(SimData, y = DV) %>%
-  binless(optimize = TRUE, interval = c(0L, 7L)) %>%
-  vpcstats(qpred = c(0.05, 0.5, 0.95), conf.level = 0.95, quantile.type = 6)
-
-vpcPlot <- ggplot(vpc$stats, aes(x = x)) +
-  geom_ribbon(aes(ymin = lo, ymax = hi, fill = qname, col = qname, group = qname), alpha = 0.1, col = NA) +
-  geom_line(aes(y = md, col = qname, group = qname)) +
-  geom_line(aes(y = y, linetype = qname), size = 1) +
-  geom_point(data = vpc$obs[!(blq | alq)], aes(x = x, y = y), color = "#757D8F", size = 1.5, shape = 16, alpha = 0.8, show.legend = FALSE) +
-  scale_colour_manual(name = "Simulated Percentiles\nMedian (lines) 95% CI (areas)", breaks = c("q0.05", "q0.5", "q0.95"), values = c("#D63636", "#3648D6", "#D63636"), labels = c("5%", "50%", "95%")) +
-  scale_fill_manual(name = "Simulated Percentiles\nMedian (lines) 95% CI (areas)", breaks = c("q0.05", "q0.5", "q0.95"), values = c("#D63636", "#3648D6", "#D63636"), labels = c("5%", "50%", "95%")) +
-  scale_linetype_manual(name = "Observed Percentiles", breaks = c("q0.05", "q0.5", "q0.95"), values = c("dashed", "solid", "dashed"), labels = c("5%", "50%", "95%")) +
-  guides(fill = guide_legend(order = 2), colour = guide_legend(order = 2), linetype = guide_legend(order = 1)) +
-  ylab(sprintf("Observed/Simulated percentiles and associated %s%% CI", 100 * vpc$conf.level)) +
-  xlab("\nTIME") +
-  theme_certara() +
-  theme(legend.position = "top", 
-       legend.title=element_text(size=8), 
-       legend.text=element_text(size=6),
-       legend.key.width = unit(0.4, 'cm'))
-
+```{r, vpcplot, fig.retina=2, out.width="140%"}
+vpcPlot <- readRDS("vpcPlot.RDS")
 vpcPlot
-
 ```
 
 # Target Attainment Simulation {.tabset .tabset-fade .tabset-pills}
@@ -403,128 +280,23 @@ vpcPlot
 ::: {.keymessage}
 &nbsp;  For 100 mg q24h * 7 dose regimen, Cmax and AUC24 on day 7:
 
-*  99+% target achievement for Cmax; 69% for WT > 90 Kg
-*  99+% target achievement for AUC24; 30% for WT > 90 Kg
-*  Consider dose adjustment for > 90 Kg subjects
+*  97% target achievement for AUC24 Overall; 69% for WT > 115 Kg
+*  92% target achievement for Cmax Overall; 45% for WT > 115 Kg
+*  Consider WT based dose adjustment to maintain target exposures
 :::
 
 ## Plots {.tabset .tabset-fade .tabset-pills}
 
-```{r simulation-target-attainment, warning=FALSE, message=FALSE, fig.width = 10, fig.height = 6}
-pkdatasim <- pkdata %>%    #make a copy of original dataset
-  filter(TIME==0) %>%    #keep only rows where time=0
-  mutate(ADDL=6,II=24)   #add ADDL (additional doses) and II (interdose interval) variables
+### Overall
+```{r, TAplot, fig.width = 9, fig.height = 4}
+TAplot <- readRDS("TAplot.RDS")
+TAplot
+```
 
-#Make a copy of our final model
-modelTAsim <- copyModel(model, acceptAllEffects = TRUE, modelName = "modelTAsim")
-
-#replace dataset with pkdatasim using the dataMapping function
-modelTAsim <- modelTAsim %>%
-  dataMapping(pkdatasim)        
-
-#Map AMT and DV to A1 and CObs
-modelTAsim <- modelTAsim %>%
-  colMapping(c(A1="AMT", CObs="DV"))
-
-#Use addADDL to map multiple dose variables
-modelTAsim <- modelTAsim %>%
-  addADDL(ADDL="ADDL", II="II")
-
-#Define table we want as output from the simulation
-SimTable <- NlmeSimTableDef(name="SimTable.csv",
-                            timesList = seq(144,168,1),
-                            variablesList = c("C", "CObs","WT","SEX"))
-## Simulation setup
-SimSetup <- NlmeSimulationParams(numReplicates = 50,
-                                 seed = 1234,
-                                 simulationTables = c(SimTable))
-
-## Run the model
-modelTAsimfit <- simmodel(modelTAsim, SimSetup)
-
-## Plot simulation results
-## Simulated drug concentration at the central compartment
-## Read in the simulation output dataset specified in the call to NlmeSimTableDef
-
-## can read the file in from the simulation directory
-## SimTableout<-read.csv("<path>/SimTable.csv")
-
-## Or, can extract it from the simulation fit object
-SimTableout <- modelTAsimfit$SimTable %>%
-  rename("Replicate"="# repl")  #rename repl column to Replicate
-
-## Calculate Cmax and AUC (AUC function from DescTools library)
-
-pkparms <- SimTableout %>% 
-  group_by(Replicate, id5) %>% 
-  mutate(Cmax = max(CObs), 
-         AUC24 = AUC(time,CObs)) %>% 
-  distinct(Replicate, id5, .keep_all = T) %>% 
-  select(Replicate, id5, SEX, WT, Cmax, AUC24)
-
-#Make some plots
-
-targetCmax <- 1    #enter the threshold you'd like to use
-targetAUC24 <- 15    #enter the threshold you'd like to use
-
-overtargetAUC24<-length(which(pkparms$AUC24 > targetAUC24)) / length(pkparms$AUC24) * 100
-overtargetCmax<-length(which(pkparms$Cmax > targetCmax)) / length(pkparms$Cmax) * 100
-
-TAplotdat <- pkparms %>% pivot_longer(cols=c(Cmax,AUC24),names_to="Parameter") %>% 
-mutate(target = ifelse(Parameter=="AUC24",targetAUC24,targetCmax)) 
-
-p1<-ggplot(TAplotdat,aes(x = value, fill=Parameter)) + 
-  labs(x="Parameter", y="Count",title="Histograms for AUC24 and Cmax Target Attainment") +
-  geom_histogram(col="black") +                 #create the histogram
-  geom_vline(aes(xintercept = target), lty=2, lwd=1) + #add a vertical line with our target
-  facet_wrap(vars(Parameter),scales="free")         #wrap by Parameter (AUC and Cmax)
-
-
-#we can use tag_facet from the egg package to add some custom text to the plots  
-
-p1<-tag_facet(p1, x=Inf,y=Inf,                        
-          open = "", 
-          close = "",
-          tag_pool=c(paste("%OverTarget = ",round(overtargetAUC24,0)),   #this uses the % values we created earlier
-                     paste("%OverTarget = ",round(overtargetCmax,0))),
-          hjust = 1.1,
-          vjust = 1.5) +
-  theme(strip.text = element_text(),strip.background = element_rect())
-
-p1
-
-## Facet by WT Categories <50kg, 50-80kg, >90kg
-TAplotdat <- TAplotdat %>% 
-  mutate(WTcut = cut(WT,breaks=c(30,50,90,Inf)))
-
-#calculate AUC24 and Cmax attainment by cuts
-
-TAsummary <- TAplotdat %>% 
-  group_by(Parameter,WTcut) %>% 
-  summarize(pctovr = round(length(which(value > target)) / length(value) * 100,0))
-
-#plot
-p2<-ggplot(TAplotdat,aes(x = value, fill=Parameter)) + 
-  labs(x="Parameter", y="Count",title="Histograms for AUC24 and Cmax Target Attainment by WT Cuts") +
-  geom_histogram(col="black") +                 
-  geom_vline(aes(xintercept = target), lty=2, lwd=1) + 
-  facet_wrap(Parameter ~ WTcut, scales="free") 
-
-#we can use tag_facet from the egg package to add some custom text to the plots  
-
-p2<-tag_facet(p2, x=Inf, y=Inf, open = "", close = "",
-          tag_pool=c(paste("%OverTarget = ",TAsummary$pctovr[1]),
-                     paste("%OverTarget = ",TAsummary$pctovr[2]),
-                     paste("%OverTarget = ",TAsummary$pctovr[3]),
-                     paste("%OverTarget = ",TAsummary$pctovr[4]),
-                     paste("%OverTarget = ",TAsummary$pctovr[5]),
-                     paste("%OverTarget = ",TAsummary$pctovr[6])),
-          hjust = 1.1,
-          vjust = 1.5,
-          size=3.5) +
-theme(strip.text = element_text(),strip.background = element_rect())
-  
-p2
+### Target Attainment by WT Cuts
+```{r, TAplotbyWT, fig.width = 9, fig.height = 6}
+TAplotbyWT <- readRDS("TAplotbyWT.RDS")
+TAplotbyWT
 ```
 
 # Session Info {.tabset .tabset-fade .tabset-pills}
