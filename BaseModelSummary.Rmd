@@ -14,6 +14,7 @@ toctitle: Contents
 ---
 
 ```{r certara-logo, echo=FALSE, fig.width=1, fig.height=10}
+knitr::opts_chunk$set(dpi=300) 
 htmltools::img(src = knitr::image_uri(file.path('img', 'certara.PNG')), 
                alt = 'logo', 
                style = 'position:fixed; top:0; right:0; padding:10px; width:300px;')
