@@ -289,13 +289,13 @@ vpcPlot
 ## Plots {.tabset .tabset-fade .tabset-pills}
 
 ### Overall
-```{r, TAplot, fig.width = 9, fig.height = 4}
+```{r, TAplot, fig.width = 9, fig.height = 4, message=FALSE}
 TAplot <- readRDS("TAplot.RDS")
 TAplot
 ```
 
 ### Target Attainment by WT Cuts
-```{r, TAplotbyWT, fig.width = 9, fig.height = 6}
+```{r, TAplotbyWT, fig.width = 9, fig.height = 6, message = FALSE}
 TAplotbyWT <- readRDS("TAplotbyWT.RDS")
 TAplotbyWT
 ```
