@@ -13,13 +13,14 @@ output:
 toctitle: Contents
 ---
 
-```{r certara-logo, echo=FALSE, fig.width=1, fig.height=10}
+```{r certara-logo, echo=FALSE, message = FALSE, warning = FALSE, fig.width=1, fig.height=10}
 knitr::opts_chunk$set(dpi=300) 
 htmltools::img(src = knitr::image_uri(file.path('img', 'certara.PNG')), 
                alt = 'logo', 
                style = 'position:fixed; top:0; right:0; padding:10px; width:300px;')
 
 library(flextable)
+library(plotly)
 
 
 
@@ -114,10 +115,11 @@ contcovsumm
 
 ## Mean profiles Linear {.tabset .tabset-fade .tabset-pills}
 
-```{r mean-linear, echo = TRUE, warning=FALSE, message=FALSE, fig.width = 8, fig.height = 6}
+```{r mean-linear, echo = TRUE, warning=FALSE, message=FALSE, out.width="80%", out.height="50%"}
 
 meanlinplot <- readRDS(file='meanlinplot.RDS')
-meanlinplot
+
+ggplotly(meanlinplot)
 
 ```
 
