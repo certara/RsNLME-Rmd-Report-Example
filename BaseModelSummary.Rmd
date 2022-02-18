@@ -126,14 +126,13 @@ meanlinplot
 ## Mean profiles Log {.tabset .tabset-fade .tabset-pills}
 
 ::: {.results}
--   bi-exponential disposition
+-   Disposition appears bi-exponential
 :::
 
 ```{r mean-log, echo = TRUE, warning=FALSE, message=FALSE, fig.width = 8, fig.height = 6}
 
 meanlogplot <- readRDS(file='meanlogplot.RDS')
 meanlogplot
-
 
 ```
 
@@ -142,7 +141,7 @@ meanlogplot
 ## Facet Gender Linear {.tabset .tabset-fade .tabset-pills}
 
 ::: {.results}
--   Gender influence on PK with higher DV's in females
+-   Possible gender difference in PK with observed concentrations higher in females
 :::
 
 ```{r gender-linear, echo = TRUE, warning=FALSE, message=FALSE, fig.width = 8, fig.height = 6}
@@ -157,7 +156,7 @@ meanlinplotbysex
 ## Facet WT Linear {.tabset .tabset-fade .tabset-pills}
 
 ::: {.results}
--   WT influence on PK with higher DV's in lower weight subjects
+-   Possible WT influence on PK with higher concentrations in lower body weight subjects
 :::
 
 ```{r wt-linear, echo = TRUE, warning=FALSE, message=FALSE, fig.width = 8, fig.height = 6}
@@ -279,7 +278,8 @@ vpcPlot
 ## Summary
 
 ::: {.keymessage}
-&nbsp;  For 100 mg q24h * 7 dose regimen, Cmax and AUC24 on day 7:
+&nbsp;  For 100 mg q24h * 7 dose regimen, Cmax and AUC24 on day 7, <br> 
+&nbsp;  target Cmax = 1, target AUC24 = 10
 
 *  97% target achievement for AUC24 Overall; 69% for WT > 115 Kg
 *  92% target achievement for Cmax Overall; 45% for WT > 115 Kg
