@@ -45,3 +45,4 @@ modelTAsim/
 
 # Ignore RDS Files
 /*.RDS
+report_template.Rmd

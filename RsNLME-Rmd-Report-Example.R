@@ -16,7 +16,7 @@ library(tidyr)
 library(dplyr)
 library(egg)
 
-## Exploratory Analysis/Dataset Summary ----
+# Exploratory Analysis/Dataset Summary ----
 
 pkdata <- read.csv("pkdata.csv")
 head(pkdata)
