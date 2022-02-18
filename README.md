@@ -19,7 +19,15 @@ Click [here](https://certara.github.io/R-RsNLME/articles/installation.html) for 
 
 ## Usage
 
-After cloning the repository, open `RsNLME-Rmd-Report-Example.Rproj` in RStudio, execute the following command to render the R Markdown file to `html` output.
+After cloning the repository, open `RsNLME-Rmd-Report-Example.Rproj` in RStudio.
+
+The following R Script will create and execute the RsNLME model. Model diagnostic plots and tables will be saved as `.RDS` file in your working directory.
+
+``` r
+source("RsNLME-Rmd-Report-Example.R")
+```
+
+Render the output from Rmarkdown to an HTML report.
 
 ``` r
 library(rmarkdown)
