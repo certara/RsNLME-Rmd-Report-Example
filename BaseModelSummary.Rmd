@@ -51,14 +51,10 @@ library(plotly)
 *  Example:  This is a key message statement
 :::
 
-
 ```{r session-set-up, warning=FALSE, message=FALSE, results=FALSE}
 # Analysis ID     : Project XYZ Population PK Analysis
 # Purpose         : Summarize Base PK model
 # Other Info      : Define your own!
-
-pkdata <- read.csv("pkdata.csv")
-
 ```
 
 # Objectives {.tabset .tabset-fade .tabset-pills} 
@@ -72,6 +68,7 @@ The purpose of this data memo is to provide a summary of the base population pha
 *  Blood samples were obtained at 0, 0.25, 0.5, 1, 2, 4, 6, 8, 12, and 24 hours after the first dose, and 12, and 24 hours after the second dose of Drug XYZ
 *  Covariates in the dataset include baseline subject weight, age, creatinine clearance, gender, status (healthy or infected) and study center (3 sites), and setting (inpatient or clinic).
 :::
+
 ## Methods
 ::: {.description}
 *  Data analysis was conducted using the population pharmacokinetic program RsNLME version 1.1.0 (https://certara.github.io/R-RsNLME/index.html) 
