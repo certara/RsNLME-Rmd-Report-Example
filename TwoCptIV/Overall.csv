@@ -1,2 +1,0 @@
-Scenario,RetCode,LogLik,-2LL,AIC,BIC,nParm,nObs,nSub,EpsShrinkage,Condition
-WorkFlow,1,1016.524140,-2033.048280,-2019.048280,-1984.026822,7,1100,100,0.090230,87.201870
