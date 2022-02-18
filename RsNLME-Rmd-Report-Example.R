@@ -14,93 +14,98 @@ library(flextable)
 library(DescTools)
 library(tidyr)
 library(dplyr)
+library(egg)
 
 ## Exploratory Analysis/Dataset Summary ----
 
-pkdata <- read.csv("pkdata.csv") 
+pkdata <- read.csv("pkdata.csv")
 head(pkdata)
 
 # * Categorical Covariate Summary ----
-catcovsumm <- pkdata %>% 
-  filter(TIME == 0) %>% 
-  mutate(SEX = factor(SEX, labels=c('Male','Female'))) %>% 
+catcovsumm <- pkdata %>%
+  filter(TIME == 0) %>%
+  mutate(SEX = factor(SEX, labels = c("Male", "Female"))) %>%
   select(SEX, STATUS, CENTER, SETTING) %>%
-  tbl_summary(by=CENTER) %>% 
-  modify_header(label = "**Variable**") %>% 
-  bold_labels() %>% 
+  tbl_summary(by = CENTER) %>%
+  modify_header(label = "**Variable**") %>%
+  bold_labels() %>%
   modify_spanning_header(all_stat_cols() ~ "**Center**")
 
-saveRDS(catcovsumm,file='catcovsumm.RDS')
+saveRDS(catcovsumm, file = "catcovsumm.RDS")
 
 # * Continuous Covariate Summary ----
-contcovsumm <- pkdata %>% 
-  filter(TIME == 0) %>% 
+contcovsumm <- pkdata %>%
+  filter(TIME == 0) %>%
   select(WT, AGE, CRCL, CENTER) %>%
-  tbl_summary(by=CENTER,
-              statistic = list(all_continuous() ~ "{mean} ({sd}) [{min}-{max}]")) %>% 
-  modify_header(label = "**Variable**") %>% 
-  bold_labels() %>% 
+  tbl_summary(
+    by = CENTER,
+    statistic = list(all_continuous() ~ "{mean} ({sd}) [{min}-{max}]")
+  ) %>%
+  modify_header(label = "**Variable**") %>%
+  bold_labels() %>%
   modify_spanning_header(all_stat_cols() ~ "**Center**")
 
-saveRDS(contcovsumm,file='contcovsumm.RDS')
+saveRDS(contcovsumm, file = "contcovsumm.RDS")
 
 # * Mean Linear Plot ----
-meanlinplot <- ggplot(subset(pkdata ,AMT==0), aes(x = TIME, y = DV, group = ID)) +  
-  geom_point(size=.8) +
-  geom_line(alpha=.2) + 
-  scale_x_continuous(limits=c(0,24)) + #limit plot to first dose
-  stat_summary(fun=mean,geom="line",aes(group=NULL),col='red',size=1) +
+meanlinplot <- ggplot(subset(pkdata, AMT == 0), aes(x = TIME, y = DV, group = ID)) +
+  geom_point(size = .8) +
+  geom_line(alpha = .2) +
+  scale_x_continuous(limits = c(0, 24)) + # limit plot to first dose
+  stat_summary(fun = mean, geom = "line", aes(group = NULL), col = "red", size = 1) +
   theme_certara()
 
-saveRDS(meanlinplot,file='meanlinplot.RDS')
+saveRDS(meanlinplot, file = "meanlinplot.RDS")
 
 # * Mean Log Plot ----
-meanlogplot <- ggplot(subset(pkdata ,AMT==0), aes(x = TIME, y = DV, group = ID)) +  
-  geom_point(size=.8) +
-  geom_line(alpha=.2) + 
-  scale_x_continuous(limits=c(0,24)) + #limit plot to first dose
-  stat_summary(fun=mean,geom="line",aes(group=NULL),col='red',size=1) +
+meanlogplot <- ggplot(subset(pkdata, AMT == 0), aes(x = TIME, y = DV, group = ID)) +
+  geom_point(size = .8) +
+  geom_line(alpha = .2) +
+  scale_x_continuous(limits = c(0, 24)) + # limit plot to first dose
+  stat_summary(fun = mean, geom = "line", aes(group = NULL), col = "red", size = 1) +
   scale_y_log10() +
   theme_certara()
 
-saveRDS(meanlogplot,file='meanlogplot.RDS')
+saveRDS(meanlogplot, file = "meanlogplot.RDS")
 
 # * Mean Linear by SEX ----
-meanlinplotbysex <- ggplot(subset(pkdata ,AMT==0), aes(x = TIME, y = DV, group = ID)) +  
-  geom_point(size=.8) +
-  geom_line(alpha=.2) + 
-  scale_x_continuous(limits=c(0,24)) +
-  stat_summary(fun=mean,geom="line",aes(group=NULL),col='red',size=1) +
+meanlinplotbysex <- ggplot(subset(pkdata, AMT == 0), aes(x = TIME, y = DV, group = ID)) +
+  geom_point(size = .8) +
+  geom_line(alpha = .2) +
+  scale_x_continuous(limits = c(0, 24)) +
+  stat_summary(fun = mean, geom = "line", aes(group = NULL), col = "red", size = 1) +
   facet_grid(~SEX) +
   theme_certara()
 
-saveRDS(meanlinplotbysex,file='meanlinplotbysex.RDS')
+saveRDS(meanlinplotbysex, file = "meanlinplotbysex.RDS")
 
 # * Mean Linear by WT ----
-meanlinplotbywt <- ggplot(subset(pkdata ,AMT==0), aes(x = TIME, y = DV, group = ID)) +  
-  geom_point(size=.8) +
-  geom_line(alpha=.2) + 
-  scale_x_continuous(limits=c(0,24)) +
-  stat_summary(fun=mean,geom="line",aes(group=NULL),col='red',size=1) +
-  facet_grid(~cut(WT,3)) +
+meanlinplotbywt <- ggplot(subset(pkdata, AMT == 0), aes(x = TIME, y = DV, group = ID)) +
+  geom_point(size = .8) +
+  geom_line(alpha = .2) +
+  scale_x_continuous(limits = c(0, 24)) +
+  stat_summary(fun = mean, geom = "line", aes(group = NULL), col = "red", size = 1) +
+  facet_grid(~ cut(WT, 3)) +
   theme_certara()
 
-saveRDS(meanlinplotbywt,file='meanlinplotbywt.RDS')
+saveRDS(meanlinplotbywt, file = "meanlinplotbywt.RDS")
 
-# ggquickeda is a Rshiny app interface to the ggplot2 package - 
-# run_ggquickeda(pkdata)  
-  
+# ggquickeda is a Rshiny app interface to the ggplot2 package -
+# run_ggquickeda(pkdata)
+
 # Define Your PK Model ----
 
 # * Main Structure ----
-ModelName<-"TwoCptIV"
-model <- pkmodel(numCompartments = 2,
-                  data = pkdata, ID = "ID", Time = "TIME", A1 = "AMT", CObs = "DV",
-                  modelName = ModelName)
+ModelName <- "TwoCptIV"
+model <- pkmodel(
+  numCompartments = 2,
+  data = pkdata, ID = "ID", Time = "TIME", A1 = "AMT", CObs = "DV",
+  modelName = ModelName
+)
 
-## Use ?pkmodel to see options, also emaxmodel, pkemaxmodel, pkindirect model, linearmodel 
+## Use ?pkmodel to see options, also emaxmodel, pkemaxmodel, pkindirect model, linearmodel
 
-## View the model 
+## View the model
 print(model)
 
 # * Initial Estimates, Random Effects ----
@@ -112,22 +117,26 @@ model <- model %>%
   randomEffect(effect = c("nV", "nCl"), value = c(0.1, 0.1)) %>%
   residualError(predName = "C", SD = 0.2)
 
-## View the updated model 
+## View the updated model
 print(model)
 
 # * Covariates ----
-#Add covariates to your model, here we include a WT covariate on Cl and V
+# Add covariates to your model, here we include a WT covariate on Cl and V
 model <- model %>%
-  addCovariate(covariate = "WT", 
-               center = "Value",
-               centerValue=70, 
-               effect = c("V", "Cl"))  %>%
+  addCovariate(
+    covariate = "WT",
+    center = "Value",
+    centerValue = 70,
+    effect = c("V", "Cl")
+  ) %>%
   addCovariate(covariate = "AGE") %>%
   addCovariate(covariate = "CRCL") %>%
-  addCovariate(covariate = "SEX", type = "Categorical", levels = c(0, 1), 
-               labels = c("male", "female"))
+  addCovariate(
+    covariate = "SEX", type = "Categorical", levels = c(0, 1),
+    labels = c("male", "female")
+  )
 
-# * View the model ---- 
+# * View the model ----
 print(model)
 
 ## If user needs help with code, launch Model Builder shiny app
@@ -144,8 +153,8 @@ TwoCptIVfit <- fitmodel(model)
 ## View a summary of estimation results
 print(TwoCptIVfit)
 
-#Save as an RDS file so that we can open in RMarkdown and access results
-saveRDS(model, file="model.RDS")
+# Save as an RDS file so that we can open in RMarkdown and access results
+saveRDS(model, file = "model.RDS")
 
 # Run Model Diagnostics ----
 
@@ -154,40 +163,42 @@ saveRDS(model, file="model.RDS")
 ## xposeNlme imports results of an NLME run into xpose database to create commonly used diagnostic plots
 xpdb <- xposeNlme(dir = model@modelInfo@workingDir, modelName = ModelName)
 
-# * DV vs PRED/IPRED, CWRES, ETAs ---- 
+# * DV vs PRED/IPRED, CWRES, ETAs ----
 # * * dv vs pred ----
-dvpred <- 
+dvpred <-
   dv_vs_pred(xpdb, type = "p", subtitle = "-2LL: @ofv, nSubj: @nind")
-saveRDS(dvpred,file="dvpred.RDS")
+saveRDS(dvpred, file = "dvpred.RDS")
 
 # * * dv vs ipred ----
-dvipred <- 
+dvipred <-
   dv_vs_ipred(xpdb, type = "p", subtitle = "-2LL: @ofv, nSubj: @nind")
-saveRDS(dvipred,file="dvipred.RDS")
+saveRDS(dvipred, file = "dvipred.RDS")
 
 # * * cwres vs idv ----
-cwresidv <- 
+cwresidv <-
   res_vs_idv(xpdb, type = "ps")
-saveRDS(cwresidv,file="cwresidv.RDS")
+saveRDS(cwresidv, file = "cwresidv.RDS")
 
 # * * cwres vs pred ----
-cwrespred <- 
+cwrespred <-
   res_vs_pred(xpdb, type = "ps")
-saveRDS(cwrespred,file="cwrespred.RDS")
+saveRDS(cwrespred, file = "cwrespred.RDS")
 
 # * * eta vs wt ----
-etacovcont <- 
-  eta_vs_cov(xpdb, 'WT', type = "ps", 
-           guide=TRUE,
-           guide_color = "black",
-           guide_slope = 0,
-           guide_intercept = 0)
-saveRDS(etacovcont,file="etacovcont.RDS")
+etacovcont <-
+  eta_vs_cov(xpdb, "WT",
+    type = "ps",
+    guide = TRUE,
+    guide_color = "black",
+    guide_slope = 0,
+    guide_intercept = 0
+  )
+saveRDS(etacovcont, file = "etacovcont.RDS")
 
 # * * eta vs sex ----
-etacovcat <- 
-  eta_vs_cov(xpdb, 'SEX') + geom_hline(yintercept=0,lty=2)
-saveRDS(etacovcat,file="etacovcat.RDS")
+etacovcat <-
+  eta_vs_cov(xpdb, "SEX") + geom_hline(yintercept = 0, lty = 2)
+saveRDS(etacovcat, file = "etacovcat.RDS")
 
 ##  Many more diagnostics available in xpose package
 
@@ -196,7 +207,7 @@ saveRDS(etacovcat,file="etacovcat.RDS")
 # resultsUI(model)
 
 # * Overall Run Summary Table ----
-xpobj<-xpdb
+xpobj <- xpdb
 
 tableoverall <- xpobj %>%
   get_overallNlme() %>%
@@ -213,7 +224,7 @@ tableoverall <- xpobj %>%
   font(fontname = "Times New Roman", part = "all") %>%
   bold(part = "header")
 
-saveRDS(tableoverall, file="tableoverall.RDS")
+saveRDS(tableoverall, file = "tableoverall.RDS")
 
 # * Theta Table ----
 tabletheta <- xpobj %>%
@@ -233,7 +244,7 @@ tabletheta <- xpobj %>%
   font(fontname = "Times New Roman", part = "all") %>%
   bold(part = "header")
 
-saveRDS(tabletheta, file="tabletheta.RDS")
+saveRDS(tabletheta, file = "tabletheta.RDS")
 
 # * Omega Table ----
 tableomega <- xpobj %>%
@@ -254,7 +265,7 @@ tableomega <- xpobj %>%
   font(fontname = "Times New Roman", part = "all") %>%
   bold(part = "header")
 
-saveRDS(tableomega, file="tableomega.RDS")
+saveRDS(tableomega, file = "tableomega.RDS")
 
 # * Sigma Table ----
 tablesigma <- xpobj %>%
@@ -275,7 +286,7 @@ tablesigma <- xpobj %>%
   font(fontname = "Times New Roman", part = "all") %>%
   bold(part = "header")
 
-saveRDS(tablesigma, file="tablesigma.RDS")
+saveRDS(tablesigma, file = "tablesigma.RDS")
 
 # Run VPC Simulation ----
 ## Run a VPC and then use VPCResultsUI to create VPC plot
@@ -283,7 +294,7 @@ saveRDS(tablesigma, file="tablesigma.RDS")
 vpcmod <- copyModel(model, acceptAllEffects = TRUE, modelName = "vpc")
 
 ## Set up VPC arguments to have PRED outputted to simulation output dataset "predout.csv"
-vpcSetup <- NlmeVpcParams(numReplicates=100, stratifyColumns = "SEX")
+vpcSetup <- NlmeVpcParams(numReplicates = 100, stratifyColumns = "SEX")
 
 ## run the vpc using the vpcmodel function
 vpcfit <- vpcmodel(model = vpcmod, vpcParams = vpcSetup)
@@ -297,7 +308,7 @@ ObsData <- vpcfit$predcheck0
 SimData <- vpcfit$predout
 
 ## launch VPCResultsUI
-vpcResultsUI(ObsData,SimData)
+# vpcResultsUI(ObsData,SimData)
 
 vpc <- observed(ObsData, x = IVAR, y = DV) %>%
   simulated(SimData, y = DV) %>%
@@ -318,56 +329,62 @@ vpcPlot <- ggplot(vpc$stats, aes(x = x)) +
   ylab(sprintf("Observed/Simulated percentiles and associated %s%% CI", 100 * vpc$conf.level)) +
   xlab("\nTIME") +
   theme_certara() +
-  theme(legend.position = "top", legend.title=element_text(size=8), 
-                                 legend.text=element_text(size=6),
-                                 legend.key.width = unit(0.4, 'cm')) 
+  theme(
+    legend.position = "top", legend.title = element_text(size = 8),
+    legend.text = element_text(size = 6),
+    legend.key.width = unit(0.4, "cm")
+  )
 
-saveRDS(vpcPlot, file="vpcPlot.RDS")
+saveRDS(vpcPlot, file = "vpcPlot.RDS")
 
 
 # Simulation and Target Attainment ----
 
 # * Setup and Run Simulation ----
 
-pkdatasim <- pkdata %>%    #make a copy of original dataset
-  filter(TIME==0) %>%    #keep only rows where time=0
-  mutate(ADDL=6,II=24)   #add ADDL (additional doses) and II (interdose interval) variables
+pkdatasim <- pkdata %>% # make a copy of original dataset
+  filter(TIME == 0) %>% # keep only rows where time=0
+  mutate(ADDL = 6, II = 24) # add ADDL (additional doses) and II (interdose interval) variables
 
-#Make a copy of our final model
+# Make a copy of our final model
 modelTAsim <- copyModel(model, acceptAllEffects = TRUE, modelName = "modelTAsim")
 
-#View the dataset that the model is currently mapped to
-modelTAsim@inputData  #shows original dataset
+# View the dataset that the model is currently mapped to
+modelTAsim@inputData # shows original dataset
 
-#replace this dataset with dt_simdata using the dataMapping function
+# replace this dataset with dt_simdata using the dataMapping function
 modelTAsim <- modelTAsim %>%
-  dataMapping(pkdatasim)        
+  dataMapping(pkdatasim)
 
-#Check mappings.  Note the presence of '?' for unmapped variables
+# Check mappings.  Note the presence of '?' for unmapped variables
 print(modelTAsim)
 
-#Map AMT and DV to A1 and CObs
+# Map AMT and DV to A1 and CObs
 modelTAsim <- modelTAsim %>%
-  colMapping(c(A1="AMT", CObs="DV"))
+  colMapping(c(A1 = "AMT", CObs = "DV"))
 
-#Re-check mappings.  Note that A1 and DV are now mapped
+# Re-check mappings.  Note that A1 and DV are now mapped
 print(modelTAsim)
 
-#Use addADDL to map multiple dose variables
+# Use addADDL to map multiple dose variables
 modelTAsim <- modelTAsim %>%
-  addADDL(ADDL="ADDL", II="II")
+  addADDL(ADDL = "ADDL", II = "II")
 
-#Re-check mappings.  Note that ADDL and II are now mapped
+# Re-check mappings.  Note that ADDL and II are now mapped
 print(modelTAsim)
 
-#Define table we want as output from the simulation
-SimTable <- NlmeSimTableDef(name="SimTable.csv",
-                            timesList = seq(144,168,1),
-                            variablesList = c("C", "CObs","WT","SEX"))
+# Define table we want as output from the simulation
+SimTable <- NlmeSimTableDef(
+  name = "SimTable.csv",
+  timesList = seq(144, 168, 1),
+  variablesList = c("C", "CObs", "WT", "SEX")
+)
 ## Simulation setup
-SimSetup <- NlmeSimulationParams(numReplicates = 100,
-                                 seed = 1234,
-                                 simulationTables = c(SimTable))
+SimSetup <- NlmeSimulationParams(
+  numReplicates = 100,
+  seed = 1234,
+  simulationTables = c(SimTable)
+)
 
 ## Run the model
 modelTAsimfit <- simmodel(modelTAsim, SimSetup)
@@ -380,80 +397,90 @@ modelTAsimfit <- simmodel(modelTAsim, SimSetup)
 
 ## Or, can extract it from the simulation fit object
 SimTableout <- modelTAsimfit$SimTable %>%
-  rename("Replicate"="# repl")  #rename repl column to Replicate
+  rename("Replicate" = "# repl") # rename repl column to Replicate
 
 # * * Calculate Cmax and AUC ----
-#(AUC function from DescTools library)
+# (AUC function from DescTools library)
 
-pkparms <- SimTableout %>% 
-  group_by(Replicate, id5) %>% 
-  mutate(Cmax = max(CObs), 
-         AUC24 = AUC(time,CObs)) %>% 
-  distinct(Replicate, id5, .keep_all = T) %>% 
+pkparms <- SimTableout %>%
+  group_by(Replicate, id5) %>%
+  mutate(
+    Cmax = max(CObs),
+    AUC24 = AUC(time, CObs)
+  ) %>%
+  distinct(Replicate, id5, .keep_all = T) %>%
   select(Replicate, id5, SEX, WT, Cmax, AUC24)
 
 # * * Overall TA Plot ----
 
-targetCmax <- 1    #enter the threshold you'd like to use
-targetAUC24 <- 10    #enter the threshold you'd like to use
+targetCmax <- 1 # enter the threshold you'd like to use
+targetAUC24 <- 10 # enter the threshold you'd like to use
 
-overtargetAUC24<-length(which(pkparms$AUC24 > targetAUC24)) / length(pkparms$AUC24) * 100
-overtargetCmax<-length(which(pkparms$Cmax > targetCmax)) / length(pkparms$Cmax) * 100
+overtargetAUC24 <- length(which(pkparms$AUC24 > targetAUC24)) / length(pkparms$AUC24) * 100
+overtargetCmax <- length(which(pkparms$Cmax > targetCmax)) / length(pkparms$Cmax) * 100
 
-TAplotdat <- pkparms %>% pivot_longer(cols=c(Cmax,AUC24),names_to="Parameter") %>% 
-mutate(target = ifelse(Parameter=="AUC24",targetAUC24,targetCmax)) 
+TAplotdat <- pkparms %>%
+  pivot_longer(cols = c(Cmax, AUC24), names_to = "Parameter") %>%
+  mutate(target = ifelse(Parameter == "AUC24", targetAUC24, targetCmax))
 
-TAplot<-ggplot(TAplotdat,aes(x = value, fill=Parameter)) + 
-  labs(x="Parameter", y="Count",title="Histograms for AUC24 and Cmax Target Attainment") +
-  geom_histogram(col="black") +                 #create the histogram
-  geom_vline(aes(xintercept = target), lty=2, lwd=1) + #add a vertical line with our target
-  facet_wrap(vars(Parameter),scales="free")         #wrap by Parameter (AUC and Cmax)
+TAplot <- ggplot(TAplotdat, aes(x = value, fill = Parameter)) +
+  labs(x = "Parameter", y = "Count", title = "Histograms for AUC24 and Cmax Target Attainment") +
+  geom_histogram(col = "black") + # create the histogram
+  geom_vline(aes(xintercept = target), lty = 2, lwd = 1) + # add a vertical line with our target
+  facet_wrap(vars(Parameter), scales = "free") # wrap by Parameter (AUC and Cmax)
 
 
-#we can use tag_facet from the egg package to add some custom text to the plots  
+# we can use tag_facet from the egg package to add some custom text to the plots
 
-TAplot<-tag_facet(TAplot, x=Inf,y=Inf,                        
-          open = "", 
-          close = "",
-          tag_pool=c(paste("%OverTarget = ",round(overtargetAUC24,0)),   #this uses the % values we created earlier
-                     paste("%OverTarget = ",round(overtargetCmax))),
-          hjust = 1.1,
-          vjust = 1.5) +
-  theme(strip.text = element_text(),strip.background = element_rect())
+TAplot <- tag_facet(TAplot,
+  x = Inf, y = Inf,
+  open = "",
+  close = "",
+  tag_pool = c(
+    paste("%OverTarget = ", round(overtargetAUC24, 0)), # this uses the % values we created earlier
+    paste("%OverTarget = ", round(overtargetCmax))
+  ),
+  hjust = 1.1,
+  vjust = 1.5
+) +
+  theme(strip.text = element_text(), strip.background = element_rect())
 
-saveRDS(TAplot,file="TAplot.RDS")
+saveRDS(TAplot, file = "TAplot.RDS")
 
 # * * TA Facet by WT ----
 ## Facet by WT Categories <50kg, 50-100kg, >100kg
 
 # First create a WT cut variable
-TAplotdat <- TAplotdat %>% 
-  mutate(WTcut = cut(WT,breaks=c(30,75,115,155)))
+TAplotdat <- TAplotdat %>%
+  mutate(WTcut = cut(WT, breaks = c(30, 75, 115, 155)))
 
-#calculate attainment by facets
-TAsummary <- TAplotdat %>% 
-  group_by(Parameter,WTcut) %>% 
-  summarize(pctovr = round(length(which(value > target)) / length(value) * 100,0))
-#plot
-TAplotbyWT<-ggplot(TAplotdat,aes(x = value, fill=Parameter)) + 
-  labs(x="Parameter", y="Count",title="Histograms for AUC24 and Cmax Target Attainment by WT Cuts") +
-  geom_histogram(col="black") +                 
-  geom_vline(aes(xintercept = target), lty=2, lwd=1) + 
-  facet_wrap(Parameter ~ WTcut, scales="free")  
+# calculate attainment by facets
+TAsummary <- TAplotdat %>%
+  group_by(Parameter, WTcut) %>%
+  summarize(pctovr = round(length(which(value > target)) / length(value) * 100, 0))
+# plot
+TAplotbyWT <- ggplot(TAplotdat, aes(x = value, fill = Parameter)) +
+  labs(x = "Parameter", y = "Count", title = "Histograms for AUC24 and Cmax Target Attainment by WT Cuts") +
+  geom_histogram(col = "black") +
+  geom_vline(aes(xintercept = target), lty = 2, lwd = 1) +
+  facet_wrap(Parameter ~ WTcut, scales = "free")
 
-#we can use tag_facet from the egg package to add some custom text to the plots  
+# we can use tag_facet from the egg package to add some custom text to the plots
 
-TAplotbyWT<-tag_facet(TAplotbyWT, x=Inf, y=Inf, open = "", close = "",
-                      tag_pool=c(paste("%OverTarget = ",TAsummary$pctovr[1]),
-                                 paste("%OverTarget = ",TAsummary$pctovr[2]),
-                                 paste("%OverTarget = ",TAsummary$pctovr[3]),
-                                 paste("%OverTarget = ",TAsummary$pctovr[4]),
-                                 paste("%OverTarget = ",TAsummary$pctovr[5]),
-                                 paste("%OverTarget = ",TAsummary$pctovr[6])),
-                      hjust = 1.1,
-                      vjust = 1.5,
-                      size=3) +
-  theme(strip.text = element_text(),strip.background = element_rect())
+TAplotbyWT <- tag_facet(TAplotbyWT,
+  x = Inf, y = Inf, open = "", close = "",
+  tag_pool = c(
+    paste("%OverTarget = ", TAsummary$pctovr[1]),
+    paste("%OverTarget = ", TAsummary$pctovr[2]),
+    paste("%OverTarget = ", TAsummary$pctovr[3]),
+    paste("%OverTarget = ", TAsummary$pctovr[4]),
+    paste("%OverTarget = ", TAsummary$pctovr[5]),
+    paste("%OverTarget = ", TAsummary$pctovr[6])
+  ),
+  hjust = 1.1,
+  vjust = 1.5,
+  size = 3
+) +
+  theme(strip.text = element_text(), strip.background = element_rect())
 
-saveRDS(TAplotbyWT,file="TAplotbyWT.RDS")
-
+saveRDS(TAplotbyWT, file = "TAplotbyWT.RDS")
