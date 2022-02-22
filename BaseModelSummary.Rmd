@@ -211,15 +211,15 @@ dvipred
 ```
 
 ### CWRES vs TIME
-```{r, cwresidv}
+```{r, cwresidv, echo = TRUE, warning=FALSE, message=FALSE, out.width="80%", out.height="50%"}
 cwresidv <- readRDS("cwresidv.RDS")
-cwresidv
+ggplotly(cwresidv)
 ```
 
 ### CWRES vs PRED
-```{r, cwrespred}
+```{r, cwrespred, echo = TRUE, warning=FALSE, message=FALSE, out.width="80%", out.height="50%"}
 cwrespred <- readRDS("cwrespred.RDS")
-cwrespred
+ggplotly(cwrespred)
 ```
 
 ### ETA vs WT
