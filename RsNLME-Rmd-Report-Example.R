@@ -1,4 +1,4 @@
-## Set up RsNLME R session ----
+# Set up RsNLME R session ----
 library(Certara.RsNLME)
 library(Certara.RsNLME.ModelBuilder)
 library(Certara.RsNLME.ModelExecutor)
@@ -302,17 +302,21 @@ vpcfit <- vpcmodel(model = vpcmod, vpcParams = vpcSetup)
 # Plot VPC ----
 
 ## VPC simulation input dataset (obs data)
-ObsData <- vpcfit$predcheck0
+ObsData <- vpcfit$predcheck0 %>% 
+  mutate(SEX = factor(Strat1,levels=c(0,1),labels=c("M","F"))) %>% 
+  arrange(ID5, IVAR)
 
 ## VPC simulation output dataset
-SimData <- vpcfit$predout
+SimData <- vpcfit$predout %>% 
+  mutate(SEX = factor(STRAT1,levels=c(0,1), labels=c("M","F"))) %>% 
+arrange(REPLICATE, ID5, IVAR)
 
 ## launch VPCResultsUI
 # vpcResultsUI(ObsData,SimData)
 
 vpc <- observed(ObsData, x = IVAR, y = DV) %>%
   simulated(SimData, y = DV) %>%
-  stratify(~Strat1) %>%
+  stratify(~ SEX) %>%
   binless(optimize = TRUE, interval = c(0L, 7L)) %>%
   vpcstats(qpred = c(0.05, 0.5, 0.95), conf.level = 0.95, quantile.type = 6)
 
